@@ -13,7 +13,7 @@ import{
     Button,
     Dimensions
 }from 'react-native';
-import { auth } from "../database/firebase";
+import { auth } from "../firebase/firebase";
 
 const {height, width} = Dimensions.get('window');
 
@@ -48,10 +48,6 @@ const LoginScreen = ({navigation}) => {
             }  
             
 }
-    const setErrorLogin = () =>{
-            if()
-    }
-
     return(
        <SafeAreaView style={{flex: 1}}>
             <ImageBackground style={styles.container} source={require('../sources/images/background.png')}>
