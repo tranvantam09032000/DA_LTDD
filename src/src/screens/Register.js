@@ -11,7 +11,7 @@ import{
     ActivityIndicator,
     TextInput,
 }from 'react-native';
-import { auth } from "../database/firebase";
+import { auth } from "../firebase/firebase";
 
 
 const RegisterScreen = ({navigation}) => {
