@@ -13,6 +13,7 @@ import{
 }from 'react-native';
 import { auth } from "../database/firebase";
 
+
 const RegisterScreen = ({navigation}) => {
 
     const [isLoading, setisLoading] = useState(false);
@@ -21,6 +22,7 @@ const RegisterScreen = ({navigation}) => {
     const [repassword, setRepassword] = useState('');
 
     const handleSignUp = () => {
+       
         if(email == "" || password == "" || repassword == "") {
               console.log('Lỗi Kết Nối!')          
             } 
@@ -41,7 +43,11 @@ const RegisterScreen = ({navigation}) => {
                                 setisLoading(false)           
                         }
                 }
+                
+               
+                 
 }
+    
     return(
        <SafeAreaView style={{flex: 1}}>       
             <ImageBackground style={styles.container} source={require('../sources/images/background.png')}>
@@ -74,13 +80,14 @@ const RegisterScreen = ({navigation}) => {
                         
                             <TouchableOpacity style={styles.buttonDN}
                                 onPress={handleSignUp}>
-
+                                 
                                 <Text style={styles.textbtnDN}>Đăng Ký</Text>
                             </TouchableOpacity>
                             {isLoading && 
                                 <ActivityIndicator style={styles.atvIndicator} 
                                     size="large" 
                                     color="#0000ff"/>}
+                                      
                                     <Text style={{top: '50%', alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
                                         onPress={() => navigation.goBack('Login')}>
                                                             Come Back Login?
