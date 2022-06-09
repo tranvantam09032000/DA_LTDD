@@ -10,54 +10,78 @@ import{
     TouchableOpacity,
     ActivityIndicator,
     TextInput,
+    Dimensions,
+    Alert 
 }from 'react-native';
 import { auth } from "../database/firebase";
+import NetInfo from "@react-native-community/netinfo";
 
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
 
 const RegisterScreen = ({navigation}) => {
 
-    const [isLoading, setisLoading] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] =useState('');
+    const alertTitle = (title, content) =>
+        Alert.alert(
+        title,
+        content,
+    );
+  
+    const [isLoading, setIsLoading] =useState(false);
+    const [connected, setConneted] = useState(true);
+    const [email, setEmail] = useState();
+    const [password, setPassword] =useState();
     const [repassword, setRepassword] = useState('');
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const unsubcrise =  NetInfo.addEventListener(state => {
+              setConneted(state.isConnected);
+      
+          });
+         return () => unsubcrise();
+     }, [])
 
     const handleSignUp = () => {
        
         if(email == "" || password == "" || repassword == "") {
-              console.log('Lỗi Kết Nối!')          
+                alertTitle("Thông báo", "Vui lòng điền đầy đủ thông tin!")        
             } 
             else{
                     if(password != repassword){
-                        console.log('Mật Khẩu Không Trùng Khớp!');
+                        setError(true)
                     }
                         else{
-                            setisLoading(true);
+                            setIsLoading(true)
                             auth
                             .createUserWithEmailAndPassword(email, password)
                             .then(userCredential => {
+                                alertTitle("Thông Báo", "Đăng kí thành công");
                                 const user = userCredential.user;
-                                console.log('Đăng ký thành công:', user.email)
-                                navigation.navigate('Login');
+                                setIsLoading(false)
+                                navigation.navigate('Login', {email: email});
+                               
+                                
                             })
-                            .catch((error) =>alert(error)) 
-                                setisLoading(false)           
+                           
+                            .catch(() => { 
+                                setError(true)
+                                setIsLoading(false)
+                            })    
                         }
-                }
-                
-               
+                }   
                  
 }
     
     return(
-       <SafeAreaView style={{flex: 1}}>       
+     
             <ImageBackground style={styles.container} source={require('../sources/images/background.png')}>
                 <View style = {styles.logo}>
                     <Image source = {require('../sources/images/logo.png')}/>
                         <Text style = {styles.textDN}>ĐĂNG KÝ</Text>
-                </View>
+                    </View>
                   
                     <View style = {styles.inputContainer}>
-
                         <TextInput style={styles.textinputE}
                             placeholder="Email"
                             value={email}
@@ -77,32 +101,39 @@ const RegisterScreen = ({navigation}) => {
                             onChangeText = {text => setRepassword(text)}
                             secureTextEntry />
                             <Image style={styles.icon} source = {require('../sources/images/iconPass.png')} />
-                        
+                            <View>
+                            <ActivityIndicator style= {isLoading ? { opacity: 1, top: 30} : { opacity: 0, top: 30}}
+                                size="large" 
+                                color="#0000ff" /> 
+                                </View>
                             <TouchableOpacity style={styles.buttonDN}
                                 onPress={handleSignUp}>
                                  
                                 <Text style={styles.textbtnDN}>Đăng Ký</Text>
                             </TouchableOpacity>
-                            {isLoading && 
-                                <ActivityIndicator style={styles.atvIndicator} 
-                                    size="large" 
-                                    color="#0000ff"/>}
-                                      
-                                    <Text style={{top: '50%', alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
+                       s 
+                                    <Text style={{top: '38%', alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
                                         onPress={() => navigation.goBack('Login')}>
                                                             Come Back Login?
                                     </Text>
+                                {error && 
+                                <Text style={{position:"absolute", marginLeft: 40, bottom: '35%', color: 'red', fontFamily:'Oswald-Bold', fontSize: 20}}>
+                                  *Mật Khẩu không trùng khớp!</Text>}
+                                 {!connected && 
+                                   <Text style={{position:"absolute", marginLeft: 40, bottom: '35%', color: 'red', fontFamily:'Oswald-Bold', fontSize: 20}}>
+                                   *Lỗi kết nối!</Text>}
 
                     </View>
             </ImageBackground>
-            </SafeAreaView>
+          
     )
 }
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
     container :{
-        flex: 1,
+       width: WIDTH,
+       height: HEIGHT,
     },
     logo: {
         flexDirection:'column',
@@ -167,4 +198,5 @@ const styles = StyleSheet.create({
         fontFamily:'Oswald-Bold',
     
     },
+    
 })

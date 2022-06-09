@@ -10,11 +10,10 @@ const HomeScreen = ({navigation}) => {
     return(
        <View>
            <Text>
-               Hi
+               HOME SCREEN
            </Text>
        </View>
     );
 }
-
 
 export default HomeScreen ;
