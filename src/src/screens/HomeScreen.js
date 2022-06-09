@@ -3,18 +3,23 @@ import{
     View,
     Text,
     TextInput,
-    Button
+    Button,
+    StyleSheet
 }from 'react-native';
+import SliderScreen from "./SliderScreen";
 
 const HomeScreen = ({navigation}) => {
     return(
-       <View>
-           <Text>
-               Hi
-           </Text>
-       </View>
+        <View style={styles.container}>
+            <SliderScreen/>
+        </View>
+        
     );
 }
 
-
+const styles = StyleSheet.create({
+    container:{
+      flex: 1,
+    },
+})
 export default HomeScreen ;
