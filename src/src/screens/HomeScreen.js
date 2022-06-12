@@ -7,58 +7,27 @@ import {
     StyleSheet,
     ScrollView
 } from 'react-native';
-import { database } from '../firebase/firebase';
-import 'firebase/firestore';
+import { collection, getDocs} from "firebase/firestore"; 
+import { db } from '../firebase/firestore.config';
 import SliderScreen from "./SliderScreen";
 
 import PostsScreen from "./PostsScreen";
 const HomeScreen = ({ navigation }) => {
-    const posts = [
-        {
-          id: 1,
-          title: "Trường cao đẳng kỹ thuật Cao Thắng 1",
-          shortContent: 'Trường cao đẳng kỹ thuật Cao Thắng 1...',
-          image: 'https://jssors8.azureedge.net/demos/image-slider/img/px-beach-daylight-fun-1430675-image.jpg',
-          author: 'ADMIN',
-          view:5,
-        },
-        {
-          id: 2,
-          title: "Trường cao đẳng kỹ thuật Cao Thắng 2",
-          shortContent: 'Trường cao đẳng kỹ thuật Cao Thắng 2...',
-          image: 'https://wowslider.com/sliders/demo-51/data1/images/car.jpg',
-          author: 'ADMIN',
-          view:10,
-        },
-        {
-          id: 3,
-          title: "Trường cao đẳng kỹ thuật Cao Thắng 3",
-          shortContent: 'Trường cao đẳng kỹ thuật Cao Thắng 3...',
-          image: 'https://wowslider.com/sliders/demo-51/data1/images/car.jpg',
-          author: 'ADMIN',
-          view:20,
-        }
-      ];
-    const [news, setnews] = useState(posts);
-    const [latestNews, setlatestNews] = useState(posts);
+    const [news, setnews] = useState([]);
+    const [latestNews, setlatestNews] = useState([]);
     const [viewedNews, setviewedNews] = useState([]);
-    const fetchNews= async ()=>{
-        // const response=database.collection("news");
-        // console.log(database.collection("news").get())
-        // const data=await response.get();
-        // data.docs.forEach(item=>{
-        //     setnews([...news,item.data()])
-        // })
-      }
+    const connect= collection(db,'news');
     const getViewedNews = (news) => {
         const viewedNews = [...news];
         setviewedNews(viewedNews.sort((a, b) => b.view - a.view));
     }
-
+    const fetchNews= async ()=>{
+        const data = await getDocs(connect);
+        setnews(data.docs.map((doc)=>({...doc.data(), id:doc.id})));
+        getViewedNews(news);
+    }
     useEffect(() => {
         fetchNews();
-        console.log(news)
-        getViewedNews(news);
     }, [])
 
     return ( 
