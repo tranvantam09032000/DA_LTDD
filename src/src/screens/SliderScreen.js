@@ -5,26 +5,17 @@ const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
 
-export default function SliderScreen() {
-  const images = [
-    { 
-      title:"Trường cao đẳng kỹ thuật Cao Thắng 1",
-      link:'https://jssors8.azureedge.net/demos/image-slider/img/px-beach-daylight-fun-1430675-image.jpg'
-    },
-    {
-      title:"Trường cao đẳng kỹ thuật Cao Thắng 2",
-      link:'https://wowslider.com/sliders/demo-51/data1/images/car.jpg'
-    }
-  ];
+export default function SliderScreen(props) {
+  const news = props.news;
   const [imageActive, setimageActive] = useState(0);
-  const [titleActive, settitleActive] = useState(images[0].title);
+  const [titleActive, settitleActive] = useState(props.news[0]?.title);
   const onChange = (nativeEvent) => {
 
     if (nativeEvent) {
       const slider = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
       if (slider != imageActive) {
         setimageActive(slider);
-        settitleActive(images[slider].title);
+        settitleActive(news[slider].title);
       }
     }
   }
@@ -38,16 +29,16 @@ export default function SliderScreen() {
           horizontal
           style={styles.wrap}>
           {
-            images.map((image, index) =>
-            <Image key={index} resizeMode="stretch" style={styles.wrap} source={{ uri: image.link }} />
+            news.map((item, index) =>
+            <Image key={'wrap'+index} resizeMode="stretch" style={styles.wrap} source={{ uri: item.image }} />
             )
           }
 
         </ScrollView>
         <View style={styles.wrapDot}>
-          {images.map((image, index) =>
-            <View >
-              <Text key={index} style={imageActive === index ? styles.dotActive : styles.dotUnActive}>●</Text>
+          {news.map((item, index) =>
+            <View style={styles.viewDot} key={'viewDot'+ index}>
+              <Text key={'wrapDot'+index} style={imageActive === index ? styles.dotActive : styles.dotUnActive}>●</Text>
             </View>
           )}
         </View>
