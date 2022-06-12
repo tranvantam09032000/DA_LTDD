@@ -16,13 +16,12 @@ let database;
 //auth login+register
 if(firebase.apps.length === 0){
   app = firebase.initializeApp(firebaseConfig);
-  database = firebase.firestore();
 }else{
   app = firebase.app();
 }
 
 const auth = firebase.auth();
-// var database = firebase.database();
+database = firebase.database();
 
 
 export {auth, database}
