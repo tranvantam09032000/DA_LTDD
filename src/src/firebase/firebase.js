@@ -1,5 +1,7 @@
 import * as firebase from "firebase";
-
+import { initializeApp } from "firebase/app"
+import {getFirestore} from 'firebase/firestore'
+import "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyBvWBYAVBZiOitTA4p9QGNQ8atF1JW05ak",
   authDomain: "fir-news-410f3.firebaseapp.com",
@@ -10,11 +12,17 @@ const firebaseConfig = {
 };
 
 let app;
-
+let database;
+//auth login+register
 if(firebase.apps.length === 0){
-    app = firebase.initializeApp(firebaseConfig);
+  app = firebase.initializeApp(firebaseConfig);
+  database = firebase.firestore();
 }else{
-    app = firebase.app();
+  app = firebase.app();
 }
+
 const auth = firebase.auth();
-export {auth};
+// var database = firebase.database();
+
+
+export {auth, database}
