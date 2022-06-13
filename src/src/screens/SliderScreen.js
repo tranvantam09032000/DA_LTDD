@@ -25,7 +25,7 @@ export default function SliderScreen(props) {
         <ScrollView
           onScroll={({ nativeEvent }) => onChange(nativeEvent)}
           showsHorizontalScrollIndicator={false}
-          pagingEnabled // hiển thị từng hình
+          pagingEnabled
           horizontal
           style={styles.wrap}>
           {
