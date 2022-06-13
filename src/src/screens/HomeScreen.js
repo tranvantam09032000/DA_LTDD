@@ -20,10 +20,17 @@ const HomeScreen = ({ navigation }) => {
     const getViewedNews = (news) => {
         const viewedNews = [...news];
         setviewedNews(viewedNews.sort((a, b) => b.view - a.view));
-    }
+    };
+
+    const getLatestNews = (news) => {
+        const latestNews = [...news];
+        setlatestNews(latestNews.sort((a, b) => b.created.seconds - a.created.seconds));
+    };
+
     const fetchNews= async ()=>{
         const data = await getDocs(connect);
         setnews(data.docs.map((doc)=>({...doc.data(), id:doc.id})));
+        getLatestNews(news);
         getViewedNews(news);
     }
     useEffect(() => {
