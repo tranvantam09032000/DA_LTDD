@@ -1,5 +1,5 @@
-import { Text, StyleSheet, View, Dimensions, Image } from 'react-native'
-import React, { useState } from 'react'
+import { Text, StyleSheet, View, Dimensions, Image, TouchableOpacity } from 'react-native'
+import React from 'react'
 import moment from "moment"
 
 const HEIGHT = Dimensions.get('window').height;
@@ -14,7 +14,13 @@ export default function PostsScreen(props) {
     <View style={styles.container}>
       {
         posts.map((post, index) =>
-          <View style={styles.new} key={'new' + index}>
+        <TouchableOpacity
+        key={'TouchableOpacity' + index}
+        style={styles.button}
+        onPress={()=>props.navigation.navigate('NewDetail',{data:post})}
+      >
+        <View
+           style={styles.new} key={'new' + index}>
             <View style={{ flex: 1 }} key={'body'+index}>
               <View style={styles.contentNew} key={'contentNew' + index}>
                 <Text style={styles.title} key={'title' + index}>{post.title}</Text>
@@ -27,6 +33,7 @@ export default function PostsScreen(props) {
             </View>
             <Image key={'image' + index} resizeMode="stretch" style={styles.image} source={{ uri: post.image }} />
           </View>
+      </TouchableOpacity>
         )
       }
     </View>

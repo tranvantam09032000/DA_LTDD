@@ -40,11 +40,11 @@ const HomeScreen = ({ navigation }) => {
     return ( 
         <ScrollView>
             <View style={styles.container}>
-                <SliderScreen news={news}/>
+                <SliderScreen news={news} />
                 <Text style={styles.titleNewPost}>Bài viết mới nhất</Text>
-                <PostsScreen news={latestNews}/>
+                <PostsScreen news={latestNews} navigation={navigation}/>
                 <Text style={styles.titleNewView}>Bài viết xem nhiều nhất</Text>
-                <PostsScreen news={viewedNews}/>
+                <PostsScreen news={viewedNews} navigation={navigation}/>
             </View>
         </ScrollView>
 
