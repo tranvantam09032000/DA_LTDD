@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     author:{
-        fontSize: 20,
+        fontSize: 11,
         fontWeight:'500',
     },
     date:{
-        fontSize: 20,
+        fontSize: 11,
         fontWeight:'500',
     },
     content:{
