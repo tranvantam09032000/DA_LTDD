@@ -1,24 +1,28 @@
 import { Text, StyleSheet, View, Dimensions, Image } from 'react-native'
 import React, { useState } from 'react'
+import moment from "moment"
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
 export default function PostsScreen(props) {
   const posts = props.news;
+  const formatCreated = (date)=>{
+    return moment(date*1000).format('HH:mm DD/MM/YYYY');
+  }
   return (
     <View style={styles.container}>
       {
         posts.map((post, index) =>
           <View style={styles.new} key={'new' + index}>
-            <View style={{ flex: 1 }} key={index}>
+            <View style={{ flex: 1 }} key={'body'+index}>
               <View style={styles.contentNew} key={'contentNew' + index}>
                 <Text style={styles.title} key={'title' + index}>{post.title}</Text>
                 <Text style={styles.content} key={'content' + index}>{post.content}</Text>
               </View>
               <View style={styles.infoNew} key={'infoNew' + index}>
                 <Text style={styles.author} key={'author' + index}>{post.author}</Text>
-                <Text style={styles.date} key={'date' + index}>11:30 08/06/2022</Text>
+                <Text style={styles.date} key={'created' + index}>{formatCreated(post.created.seconds)}</Text>
               </View>
             </View>
             <Image key={'image' + index} resizeMode="stretch" style={styles.image} source={{ uri: post.image }} />
