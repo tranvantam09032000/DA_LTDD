@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flex: 1,
-        backgroundColor: "#fafafa80",
+        backgroundColor:"#14151673",
         justifyContent: "space-around",
         width: WIDTH,
         height: HEIGHT * 0.20,
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         fontSize: 28,
         textAlign: 'center',
-        fontWeight: '500',
+        fontWeight: '400',
+        color:'#e9ecef'
     },
     info: {
         flexDirection: 'row',
@@ -71,15 +72,17 @@ const styles = StyleSheet.create({
     },
     author: {
         fontSize: 20,
-        fontWeight: '500',
+        fontWeight: '400',
+        color:'#e9ecef'
     },
     date: {
         fontSize: 20,
-        fontWeight: '500',
+        fontWeight: '400',
+        color:'#e9ecef'
     },
     content: {
         marginVertical: 20,
-        marginHorizontal: 10
+        marginHorizontal: 10,
     }
 
 })
