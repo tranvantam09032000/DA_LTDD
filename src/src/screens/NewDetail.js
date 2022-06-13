@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F4F9F8',
+        height: HEIGHT
     },
     imageTitle: {
         width: WIDTH,
@@ -47,19 +48,19 @@ const styles = StyleSheet.create({
         width: WIDTH,
         height: HEIGHT * 0.30
     },
-    header:{
-        flex: 1, 
-        backgroundColor: "#fafafa80", 
-        justifyContent: "space-around", 
+    header: {
+        flex: 1,
+        backgroundColor: "#fafafa80",
+        justifyContent: "space-around",
         width: WIDTH,
         height: HEIGHT * 0.20,
-        position:"absolute" 
+        position: "absolute"
     },
     titleNew: {
         marginTop: 20,
         fontSize: 28,
         textAlign: 'center',
-        fontWeight:'500',
+        fontWeight: '500',
     },
     info: {
         flexDirection: 'row',
@@ -68,17 +69,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50,
         marginBottom: 10,
     },
-    author:{
+    author: {
         fontSize: 20,
-        fontWeight:'500',
+        fontWeight: '500',
     },
-    date:{
+    date: {
         fontSize: 20,
-        fontWeight:'500',
+        fontWeight: '500',
     },
-    content:{
-        marginVertical:20,
-        marginHorizontal:10
+    content: {
+        marginVertical: 20,
+        marginHorizontal: 10
     }
 
 })
