@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     title:{
         fontSize:40,
         fontWeight:'500',
-        color:'#121111'
+        color:'#545353'
     },
     content:{
         fontSize:28,
         fontWeight:'500',
-        color:'#121111'
+        color:'#545353'
     }
 
 })
