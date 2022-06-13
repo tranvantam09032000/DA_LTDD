@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     fontWeight: '500',
-    color: '#545353'
+    color: '#d5d5d5'
   },
   content: {
     fontSize: 28,
     fontWeight: '500',
-    color: '#545353'
+    color: '#d5d5d5'
   }
 
 })
