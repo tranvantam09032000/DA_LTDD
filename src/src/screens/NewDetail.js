@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
     View,
     Text,
@@ -7,27 +7,45 @@ import {
     Dimensions,
     ScrollView
 } from 'react-native';
+import moment from "moment"
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
-const NewDetail = () => {
+const NewDetail = (props) => {
+    const [infoNew, setinfoNew] = useState({});
+    useEffect(() => {
+        setinfoNew(props.route.params.data);
+    }, [])
+    const formatCreated = (date)=>{
+        return moment(date*1000).format('HH:mm DD/MM/YYYY');
+    }
+    const firstNewContent = (content)=>{
+        const arrContent = content?.split(" ");
+        const firstContent = arrContent?.slice(0, arrContent.length/2); 
+        return firstContent?.join(" ");
+    }
+    const secondNewContent = (content)=>{
+        const arrContent = content?.split(" ");
+        const secondContent = arrContent?.slice(arrContent.length/2, arrContent.length);
+        return secondContent?.join(" ");
+    }
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Image resizeMode="stretch" style={styles.imageTitle} source={{ uri: 'https://soliloquywp.com/wp-content/uploads/2013/05/action-backlit-beach-1046896-1200x450_c.jpg' }}></Image>
+                <Image resizeMode="stretch" style={styles.imageTitle} source={{ uri: infoNew.image }}></Image>
                 <View style={styles.header}>
                     <View style={styles.title}>
-                        <Text style={styles.titleNew}>Trường cao đẳng kỹ thuật Cao Thắng 1</Text>
+                        <Text style={styles.titleNew}>{infoNew.title}</Text>
                     </View>
                     <View style={styles.info}>
-                        <Text style={styles.author}>Admin</Text>
-                        <Text style={styles.date}>12:00 20/10/2022</Text>
+                        <Text style={styles.author}>{infoNew.author}</Text>
+                        <Text style={styles.date}>{formatCreated(infoNew.created?.seconds)}</Text>
                     </View>
                 </View>
-                <Text style={styles.content}>Trường cao đẳng kỹ thuật Cao Thắng 1</Text>
-                <Image resizeMode="stretch" style={styles.image} source={{ uri: 'https://soliloquywp.com/wp-content/uploads/2013/05/action-backlit-beach-1046896-1200x450_c.jpg' }}></Image>
-                <Text style={styles.content}>https://soliloquywp.com/wp-content/uploads/2013/05/action-backlit-beach-1046896-1200x450_c.jpg</Text>
+                <Text style={styles.content}>{firstNewContent(infoNew.content)}</Text>
+                <Image resizeMode="stretch" style={styles.image} source={{ uri: infoNew.image }}></Image>
+                <Text style={styles.content}>{secondNewContent(infoNew.content)}</Text>
             </View>
         </ScrollView>
 
@@ -83,6 +101,7 @@ const styles = StyleSheet.create({
     content: {
         marginVertical: 20,
         marginHorizontal: 10,
+        fontSize:15
     }
 
 })
