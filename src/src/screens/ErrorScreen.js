@@ -9,8 +9,8 @@ const ErrorScreen = () => {
 
     return ( 
             <View style={styles.container}>
-                <Text>Lỗi</Text>
-                <Text>Kết nối internet thất bại!</Text>
+                <Text style={styles.title}>Lỗi</Text>
+                <Text style={styles.content}>Kết nối internet thất bại!</Text>
             </View>
     );
 }
@@ -18,7 +18,20 @@ const ErrorScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F4F9F8'
+        backgroundColor: '#F4F9F8',
+        justifyContent:"center",
+        alignItems:"center"
     },
+    title:{
+        fontSize:40,
+        fontWeight:'500',
+        color:'#121111'
+    },
+    content:{
+        fontSize:28,
+        fontWeight:'500',
+        color:'#121111'
+    }
+
 })
 export default ErrorScreen;
