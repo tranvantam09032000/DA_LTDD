@@ -8,30 +8,30 @@ import {
   ScrollView,
   Dimensions
 } from 'react-native';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from '../firebase/firestore.config';
 import PostsScreen from "./PostsScreen";
 
-const HEIGHT = Dimensions.get('window').height;
-const WIDTH = Dimensions.get('window').width;
-
 const NewsCategory = () => {
-  const [categories, setcategories] = useState([]);
+  const [subCategories, setsubCategories] = useState([]);
   const [news, setnews] = useState([]);
-  const connectCategory = collection(db, 'categories');
+  const connectSubCategory = doc(db, "categories", "HdKvZodh1YuzPwuXetrx");
   const connectNews = collection(db, 'news');
 
   const fetchCategories = async () => {
-    const data = await getDocs(connectCategory);
-    setcategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const data = await getDoc(connectSubCategory);
+    console.log(data.data())
+    setsubCategories(data.data().subcategories);
+    console.log(subCategories)
   }
   const fetchNews = async () => {
     const data = await getDocs(connectNews);
+    data.sort((a, b) => b.created.seconds - a.created.seconds);
     setnews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }
-  const getNewBycategory = (category)=>{
+  const getNewBySubCategory = (subCategory)=>{
     return news.filter((newItem)=>{
-      return newItem.type === category;
+      return newItem.type === subCategory;
     })
   }
   useEffect(() => {
@@ -42,14 +42,13 @@ const NewsCategory = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        {categories.map((category, index) =>
-          <View key={'category'+ index} style={styles.category}>
-            <Text key={'title-category'+ index} style={styles.titleCategory}>{category.title}</Text>
-            <PostsScreen key={'news'+ index} news={getNewBycategory(category.code)} />
+        {subCategories.map((subCategory, index) =>
+          <View key={'subCategory'+ index} style={styles.subCategory}>
+            <Text key={'title-subCategory'+ index} style={styles.titleCategory}>{subCategory.title}</Text>
+            <PostsScreen key={'news'+ index} news={getNewBySubCategory(subCategory.code)} />
           </View>
         )}
       </View>
-
     </ScrollView>
 
   );
@@ -60,8 +59,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F4F9F8',
   },
-  category:{
-    marginVertical: 5
+  subCategory:{
+    marginVertical:5,
+    marginTop:20
   },
   titleCategory:{
     textAlign:'center',
