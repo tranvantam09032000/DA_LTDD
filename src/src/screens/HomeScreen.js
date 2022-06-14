@@ -19,12 +19,16 @@ const HomeScreen = ({ navigation }) => {
     const connect= collection(db,'news');
     const getViewedNews = (news) => {
         const viewedNews = [...news];
-        setviewedNews(viewedNews.sort((a, b) => b.view - a.view));
+        viewedNews.sort((a, b) => b.view - a.view);
+        viewedNews.slice(2);
+        setviewedNews(viewedNews);
     };
 
     const getLatestNews = (news) => {
         const latestNews = [...news];
-        setlatestNews(latestNews.sort((a, b) => b.created.seconds - a.created.seconds));
+        latestNews.sort((a, b) => b.created.seconds - a.created.seconds);
+        latestNews.slice(2);
+        setlatestNews(latestNews);
     };
 
     const fetchNews= async ()=>{
