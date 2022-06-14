@@ -20,9 +20,7 @@ const NewsCategory = () => {
 
   const fetchCategories = async () => {
     const data = await getDoc(connectSubCategory);
-    console.log(data.data())
     setsubCategories(data.data().subcategories);
-    console.log(subCategories)
   }
   const fetchNews = async () => {
     const data = await getDocs(connectNews);
