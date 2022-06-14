@@ -19,9 +19,9 @@ const App = () =>{
           headerShown: false}}>
         {/* <Stack.Screen name='Login' component={LoginScreen}/>
         <Stack.Screen name='Register' component={RegisterScreen}/> */}
-        <Stack.Screen name='Home' component={HomeScreen}/>
+        {/* <Stack.Screen name='Home' component={HomeScreen}/> */}
         {/* <Stack.Screen name='NewDetail' component={NewDetail}/> */}
-        {/* <Stack.Screen name='NewsCategory' component={NewsCategory}/> */}
+        <Stack.Screen name='NewsCategory' component={NewsCategory}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
