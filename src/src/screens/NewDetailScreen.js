@@ -12,7 +12,7 @@ import moment from "moment"
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
-const NewDetail = (props) => {
+const NewDetailScreen = (props) => {
     const [infoNew, setinfoNew] = useState({});
     useEffect(() => {
         setinfoNew(props.route.params.data);
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default NewDetail;
+export default NewDetailScreen;

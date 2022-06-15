@@ -19,12 +19,16 @@ const HomeScreen = ({ navigation }) => {
     const connect= collection(db,'news');
     const getViewedNews = (news) => {
         const viewedNews = [...news];
-        setviewedNews(viewedNews.sort((a, b) => b.view - a.view));
+        viewedNews.sort((a, b) => b.view - a.view);
+        viewedNews.slice(2);
+        setviewedNews(viewedNews);
     };
 
     const getLatestNews = (news) => {
         const latestNews = [...news];
-        setlatestNews(latestNews.sort((a, b) => b.created.seconds - a.created.seconds));
+        latestNews.sort((a, b) => b.created.seconds - a.created.seconds);
+        latestNews.slice(2);
+        setlatestNews(latestNews);
     };
 
     const fetchNews= async ()=>{
@@ -42,9 +46,9 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <SliderScreen news={news} />
                 <Text style={styles.titleNewPost}>Bài viết mới nhất</Text>
-                <PostsScreen news={latestNews} navigation={navigation}/>
+                <PostsScreen news={latestNews} type={"NewDetail"} countNews={0} navigation={navigation}/>
                 <Text style={styles.titleNewView}>Bài viết xem nhiều nhất</Text>
-                <PostsScreen news={viewedNews} navigation={navigation}/>
+                <PostsScreen news={viewedNews} type={"NewDetail"} countNews={0}  navigation={navigation}/>
             </View>
         </ScrollView>
 
