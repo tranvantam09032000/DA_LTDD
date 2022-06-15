@@ -25,7 +25,7 @@ export default function PostsScreen(props) {
         <TouchableOpacity
         key={'TouchableOpacity' + index}
         style={styles.button}
-        onPress={()=>props.navigation.navigate(type,{data:post})}
+        onPress={()=>props.navigation.navigate(type,{data:{post: post,posts:posts}})}
       >
         <View
            style={styles.new} key={'new' + index}>
