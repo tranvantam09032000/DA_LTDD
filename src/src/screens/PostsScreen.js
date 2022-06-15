@@ -7,13 +7,13 @@ const WIDTH = Dimensions.get('window').width;
 
 export default function PostsScreen(props) {
   const [posts, setposts] = useState([]);
-  // const posts = props.news;
   const type = props.type;
   const countNews = props.countNews;
   const formatCreated = (date)=>{
     return moment(date*1000).format('HH:mm DD/MM/YYYY');
   }
   useEffect(() => {
+    if(props.news.length === 0) return;
     if(countNews === 0 || !countNews) return setposts(props.news);
     setposts(posts.slice(0,countNews));
   }, [])
