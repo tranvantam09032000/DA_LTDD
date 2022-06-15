@@ -1,15 +1,23 @@
 import { Text, StyleSheet, View, Dimensions, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import moment from "moment"
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
 export default function PostsScreen(props) {
-  const posts = props.news;
+  const [posts, setposts] = useState([]);
+  // const posts = props.news;
+  const type = props.type;
+  const countNews = props.countNews;
   const formatCreated = (date)=>{
     return moment(date*1000).format('HH:mm DD/MM/YYYY');
   }
+  useEffect(() => {
+    if(countNews === 0 || !countNews) return setposts(props.news);
+    setposts(posts.slice(0,countNews));
+  }, [])
+
   return (
     <View style={styles.container}>
       {
@@ -17,7 +25,7 @@ export default function PostsScreen(props) {
         <TouchableOpacity
         key={'TouchableOpacity' + index}
         style={styles.button}
-        onPress={()=>props.navigation.navigate('NewDetail',{data:post})}
+        onPress={()=>props.navigation.navigate(type,{data:post})}
       >
         <View
            style={styles.new} key={'new' + index}>
