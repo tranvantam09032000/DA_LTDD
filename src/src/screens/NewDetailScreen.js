@@ -15,7 +15,7 @@ const WIDTH = Dimensions.get('window').width;
 const NewDetailScreen = (props) => {
     const [infoNew, setinfoNew] = useState({});
     useEffect(() => {
-        setinfoNew(props.route.params.data);
+        setinfoNew(props.route.params.data.post);
     }, [])
     const formatCreated = (date)=>{
         return moment(date*1000).format('HH:mm DD/MM/YYYY');
