@@ -21,9 +21,9 @@ const App = () =>{
         {/* <Stack.Screen name='Login' component={LoginScreen}/>
         <Stack.Screen name='Register' component={RegisterScreen}/> */}
         {/* <Stack.Screen name='Home' component={HomeScreen}/> */}
-        {/* <Stack.Screen name='NewDetail' component={NewDetailScreen}/> */}
         <Stack.Screen name='NewsCategory' component={NewsCategory}/>
         <Stack.Screen name='NewsSubcategoryScreen' component={NewsSubcategoryScreen}/>
+        <Stack.Screen name='NewDetail' component={NewDetailScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
