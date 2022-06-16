@@ -11,18 +11,28 @@ import {
     TouchableOpacity
 } from 'react-native';
 import PostsScreen from "./PostsScreen";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { db } from '../firebase/firestore.config';
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
-const NewsSubcategoryScreen = (props, { navigation }) => {
+const NewsSubcategoryScreen = (props) => {
     const [posts, setposts] = useState(props.route.params.data.posts);
     const subcategory = props.route.params.data.subCategory;
     const [keyword, setkeyword] = useState("");
+    const searchNews = async (keyword) => {
+        console.log(keyword)
+        const connectNews = collection(db, 'news').orderBy("title", keyword);
+        const data = await getDocs(connectNews);
+        arrNews = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        arrNews.sort((a, b) => b.created.seconds - a.created.seconds);
+        setnews(arrNews);
+    }
     return (
         <ScrollView>
             <View style={styles.container}>
-            <Text key={'title-subCategory'} style={styles.titleCategory}>{subcategory.title}</Text>
+                <Text key={'title-subCategory'} style={styles.titleCategory}>{subcategory.title}</Text>
                 <View style={styles.inputSearch}>
                     <TextInput
                         style={styles.input}
@@ -30,9 +40,9 @@ const NewsSubcategoryScreen = (props, { navigation }) => {
                         value={keyword}
                         placeholder="keyword..."
                     />
-                        <Pressable style={styles.button} onPress={() => { console.log(props.navigation) }}>
-                            <Image style={styles.icon} source={require('../sources/images/iconsearch.png')} />
-                        </Pressable>
+                    <Pressable style={styles.button} onPress={() => { searchNews(keyword) }}>
+                        <Image style={styles.icon} source={require('../sources/images/iconsearch.png')} />
+                    </Pressable>
                 </View>
                 <View style={styles.subCategory}>
                     <PostsScreen news={posts} type={"NewDetail"} countNews={0} navigation={props.navigation} />
@@ -82,7 +92,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         fontSize: 28,
         fontWeight: "500",
-        marginTop:20
+        marginTop: 20
     },
 })
 export default NewsSubcategoryScreen;

@@ -8,6 +8,8 @@ import {
     ScrollView
 } from 'react-native';
 import moment from "moment"
+import { collection, getDocs, doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from '../firebase/firestore.config';
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -15,6 +17,7 @@ const WIDTH = Dimensions.get('window').width;
 const NewDetailScreen = (props) => {
     const [infoNew, setinfoNew] = useState({});
     useEffect(() => {
+        updateViewNew(props.route.params.data.post.id, props.route.params.data.post.view);
         setinfoNew(props.route.params.data.post);
     }, [])
     const formatCreated = (date)=>{
@@ -29,6 +32,10 @@ const NewDetailScreen = (props) => {
         const arrContent = content?.split(" ");
         const secondContent = arrContent?.slice(arrContent.length/2, arrContent.length);
         return secondContent?.join(" ");
+    }
+    const updateViewNew = async (id, countView)=>{
+        const newDoc = doc(db, "news", id);
+        await updateDoc(newDoc, {view: countView + 1});
     }
     return (
         <ScrollView>
