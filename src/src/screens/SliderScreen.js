@@ -30,15 +30,15 @@ export default function SliderScreen(props) {
           style={styles.wrap}>
           {
             news.map((item, index) =>
-            <Image key={'wrap'+index} resizeMode="stretch" style={styles.wrap} source={{ uri: item.image }} />
+              <Image key={'wrap' + index} resizeMode="stretch" style={styles.wrap} source={{ uri: item.image }} />
             )
           }
 
         </ScrollView>
         <View style={styles.wrapDot}>
           {news.map((item, index) =>
-            <View style={styles.viewDot} key={'viewDot'+ index}>
-              <Text key={'wrapDot'+index} style={imageActive === index ? styles.dotActive : styles.dotUnActive}>●</Text>
+            <View style={styles.viewDot} key={'viewDot' + index}>
+              <Text key={'wrapDot' + index} style={imageActive === index ? styles.dotActive : styles.dotUnActive}>●</Text>
             </View>
           )}
         </View>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     height: HEIGHT * 0.25
   },
   wrapDot: {
-    zIndex:2,
+    zIndex: 2,
     position: 'absolute',
     bottom: 0,
     flexDirection: 'row',
@@ -71,21 +71,21 @@ const styles = StyleSheet.create({
     margin: 3,
     color: '#5e6355'
   },
-  title:{
-    zIndex:2,
-    position:'absolute',
-    bottom:40,
-    left:10,
-    width:'90%',
-    color:'#e9ecef',
-    fontSize:20,
+  title: {
+    zIndex: 2,
+    position: 'absolute',
+    bottom: 40,
+    left: 10,
+    width: '90%',
+    color: '#e9ecef',
+    fontSize: 20,
   },
-  content:{
-    zIndex:1,
-    position:'absolute',
-    bottom:0,
-    backgroundColor:"#14151673",
+  content: {
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: "#14151673",
     width: "100%",
-    height:"40%",
+    height: "40%",
   }
 })
