@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: "#14151673",
     width: "100%",
-    height: "50%",
+    height: "40%",
   }
 })
