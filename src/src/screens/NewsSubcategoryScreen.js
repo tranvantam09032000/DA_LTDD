@@ -22,11 +22,10 @@ const NewsSubcategoryScreen = (props) => {
     const subcategory = props.route.params.data.subCategory;
     const [keyword, setkeyword] = useState("");
     const searchNews = async (keyword, subcategory) => {
-        const connectNews = query(collection(db, "news"), where("type", "==", subcategory.code), where("title", "==", "Trường cao đẳng kỹ thuật Cao Thắng 2"), where("content", "==", "Trường cao đẳng kỹ thuật Cao Thắng 2"));
+        const connectNews = query(collection(db, "news"), where("type", "==", subcategory.code), where("title", "==",keyword));
         setposts([]);
         const data = await getDocs(connectNews);
         const arrNews = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-        console.log(arrNews);
         arrNews.sort((a, b) => b.created.seconds - a.created.seconds);
         setposts(arrNews);
     }
