@@ -11,24 +11,29 @@ import {
     TouchableOpacity
 } from 'react-native';
 import PostsScreen from "./PostsScreen";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, query, where, } from "firebase/firestore";
 import { db } from '../firebase/firestore.config';
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
 const NewsSubcategoryScreen = (props) => {
-    const [posts, setposts] = useState(props.route.params.data.posts);
+    const [posts, setposts] = useState([]);
     const subcategory = props.route.params.data.subCategory;
     const [keyword, setkeyword] = useState("");
-    const searchNews = async (keyword) => {
-        console.log(keyword)
-        const connectNews = collection(db, 'news').orderBy("title", keyword);
+    const searchNews = async (keyword, subcategory) => {
+        const connectNews = query(collection(db, "news"), where("type", "==", subcategory.code), where("title", "==", "Trường cao đẳng kỹ thuật Cao Thắng 2"), where("content", "==", "Trường cao đẳng kỹ thuật Cao Thắng 2"));
+        setposts([]);
         const data = await getDocs(connectNews);
-        arrNews = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const arrNews = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        console.log(arrNews);
         arrNews.sort((a, b) => b.created.seconds - a.created.seconds);
-        setnews(arrNews);
+        setposts(arrNews);
     }
+
+    useEffect(()=>{
+        setposts(props.route.params.data.posts);
+    },[])
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -40,7 +45,7 @@ const NewsSubcategoryScreen = (props) => {
                         value={keyword}
                         placeholder="keyword..."
                     />
-                    <Pressable style={styles.button} onPress={() => { searchNews(keyword) }}>
+                    <Pressable style={styles.button} onPress={() => { searchNews(keyword, subcategory) }}>
                         <Image style={styles.icon} source={require('../sources/images/iconsearch.png')} />
                     </Pressable>
                 </View>
