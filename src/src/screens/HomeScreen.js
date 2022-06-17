@@ -46,9 +46,9 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <SliderScreen news={news} />
                 <Text style={styles.titleNewPost}>Bài viết mới nhất</Text>
-                <PostsScreen news={latestNews} type={"NewDetail"} countNews={0} navigation={navigation}/>
+                <PostsScreen news={latestNews} type={"NewDetail"} countNews={3} navigation={navigation}/>
                 <Text style={styles.titleNewView}>Bài viết xem nhiều nhất</Text>
-                <PostsScreen news={viewedNews} type={"NewDetail"} countNews={0}  navigation={navigation}/>
+                <PostsScreen news={viewedNews} type={"NewDetail"} countNews={3}  navigation={navigation}/>
             </View>
         </ScrollView>
 
