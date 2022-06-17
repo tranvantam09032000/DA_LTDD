@@ -22,7 +22,7 @@ const NewsSubcategoryScreen = (props) => {
     const subcategory = props.route.params.data.subCategory;
     const [keyword, setkeyword] = useState("");
     const searchNews = async (keyword, subcategory) => {
-        const connectNews = query(collection(db, "news"), where("type", "==", subcategory.code), where("title", "==",keyword));
+        const connectNews = query(collection(db, "news"), where("type", "==", subcategory.code), where("title", "==", keyword));
         setposts([]);
         const data = await getDocs(connectNews);
         const arrNews = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -30,9 +30,9 @@ const NewsSubcategoryScreen = (props) => {
         setposts(arrNews);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setposts(props.route.params.data.posts);
-    },[])
+    }, [])
     return (
         <ScrollView>
             <View style={styles.container}>
