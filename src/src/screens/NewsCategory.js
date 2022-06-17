@@ -43,10 +43,10 @@ const NewsCategory = ({ navigation }) => {
     <ScrollView>
       <View style={styles.container}>
         {subCategories.map((subCategory, index) =>
-            <View key={'subCategory' + index} style={styles.subCategory}>
-              <Text key={'title-subCategory' + index} style={styles.titleCategory}>{subCategory.title}</Text>
-              <PostsScreen key={'news' + index} news={getNewBySubCategory(subCategory.code) } type={"NewsSubcategoryScreen"} countNews={0} navigation={navigation} subCategory={subCategory}/>
-            </View>
+          <View key={'subCategory' + index} style={styles.subCategory}>
+            <Text key={'title-subCategory' + index} style={styles.titleCategory}>{subCategory.title}</Text>
+            <PostsScreen key={'news' + index} news={getNewBySubCategory(subCategory.code)} type={"NewsSubcategoryScreen"} countNews={0} navigation={navigation} subCategory={subCategory} />
+          </View>
         )}
       </View>
     </ScrollView>

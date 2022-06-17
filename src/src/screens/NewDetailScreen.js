@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     Text,
@@ -20,22 +20,22 @@ const NewDetailScreen = (props) => {
         updateViewNew(props.route.params.data.post.id, props.route.params.data.post.view);
         setinfoNew(props.route.params.data.post);
     }, [])
-    const formatCreated = (date)=>{
-        return moment(date*1000).format('HH:mm DD/MM/YYYY');
+    const formatCreated = (date) => {
+        return moment(date * 1000).format('HH:mm DD/MM/YYYY');
     }
-    const firstNewContent = (content)=>{
+    const firstNewContent = (content) => {
         const arrContent = content?.split(" ");
-        const firstContent = arrContent?.slice(0, arrContent.length/2); 
+        const firstContent = arrContent?.slice(0, arrContent.length / 2);
         return firstContent?.join(" ");
     }
-    const secondNewContent = (content)=>{
+    const secondNewContent = (content) => {
         const arrContent = content?.split(" ");
-        const secondContent = arrContent?.slice(arrContent.length/2, arrContent.length);
+        const secondContent = arrContent?.slice(arrContent.length / 2, arrContent.length);
         return secondContent?.join(" ");
     }
-    const updateViewNew = async (id, countView)=>{
+    const updateViewNew = async (id, countView) => {
         const newDoc = doc(db, "news", id);
-        await updateDoc(newDoc, {view: countView + 1});
+        await updateDoc(newDoc, { view: countView + 1 });
     }
     return (
         <ScrollView>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flex: 1,
-        backgroundColor:"#14151673",
+        backgroundColor: "#14151673",
         justifyContent: "space-around",
         width: WIDTH,
         height: HEIGHT * 0.20,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         textAlign: 'center',
         fontWeight: '400',
-        color:'#e9ecef'
+        color: '#e9ecef'
     },
     info: {
         flexDirection: 'row',
@@ -98,17 +98,17 @@ const styles = StyleSheet.create({
     author: {
         fontSize: 20,
         fontWeight: '400',
-        color:'#e9ecef'
+        color: '#e9ecef'
     },
     date: {
         fontSize: 20,
         fontWeight: '400',
-        color:'#e9ecef'
+        color: '#e9ecef'
     },
     content: {
         marginVertical: 20,
         marginHorizontal: 10,
-        fontSize:15
+        fontSize: 15
     }
 
 })
