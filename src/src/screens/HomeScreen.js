@@ -62,14 +62,14 @@ const styles = StyleSheet.create({
     },
     titleNewPost: {
         fontSize: 20,
-        fontWeight: '400',
+        fontWeight: '500',
         marginTop: 20,
         marginLeft: 5,
         marginBottom: 5
     },
     titleNewView: {
         fontSize: 20,
-        fontWeight: '400',
+        fontWeight: '500',
         marginTop: 20,
         marginLeft: 5,
         marginBottom: 5
