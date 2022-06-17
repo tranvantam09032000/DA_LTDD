@@ -13,8 +13,8 @@ import{
     Button,
     Dimensions
 }from 'react-native';
-import { auth } from "../firebase/firebase";
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const {height, width} = Dimensions.get('window');
 
 const LoginScreen = ({navigation}) => {
@@ -26,16 +26,16 @@ const LoginScreen = ({navigation}) => {
         email: false,
         password: false
     });
+    const auth = getAuth();
 
     const handleLogin = () => {
         if(email == "" || password == "") {
-            setisLoading(false)
+            setisLoading(false);
                 alert('Vui lòng nhập Tài Khoản, Mật Khẩu!');
                 
             }else {
                 setisLoading(true);
-                auth
-                .signInWithEmailAndPassword(email, password)
+                signInWithEmailAndPassword(auth, email, password)
                 .then(userCredentials => {
                     const user = userCredentials.user;
                     setisLoading(false)
