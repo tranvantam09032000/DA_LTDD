@@ -5,6 +5,17 @@ import HomeScreen from "../screens/HomeScreen";
 
 const DrawerComponent = ({navigation}) => {
 
+  const fetchNews = async () => {
+    const data = await getDocs(connect);
+    setnews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    getLatestNews(news);
+    getViewedNews(news);
+}
+useEffect(() => {
+    fetchNews();
+}, [])
+
+
   const navigationView = () => (
     <View style={[styles.container, styles.navigationContainer]}>
          <View style={{flexDirection:'row', justifyContent:"center", alignItems:'center', padding: 10, backgroundColor:'#2F9FF8'}}>
