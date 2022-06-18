@@ -12,8 +12,9 @@ const DrawerComponent = () => {
             <Image style={{width: 70, height: 70,right: 65 }} source = {require('../sources/images/logo.png')} resizeMode="contain"/>
             <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white', right: 40}}>Cao Thắng</Text>
         </View>
-            
-        
+        <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center', padding: 5}}> 
+         
+        </View> 
     </View>
   );
   return (
