@@ -19,6 +19,11 @@ const DrawerComponent = () => {
                         <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333', right: 37}}>Trang Chủ</Text> 
               </TouchableOpacity> 
 
+              <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center',  padding: 10}} >
+                        <Image style={{width: 30, height: 30, right: 79}}  source={require('../sources/images/khoa_icon.png')} resizeMode="contain"/>
+                        <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 35}}>Khoa CNTT</Text> 
+                    
+              </TouchableOpacity> 
 
         </View> 
     </View>
