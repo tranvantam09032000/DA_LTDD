@@ -37,6 +37,7 @@ const NewDetailScreen = (props) => {
         const newDoc = doc(db, "news", id);
         await updateDoc(newDoc, { view: countView + 1 });
     }
+    
     return (
         <ScrollView>
             <View style={styles.container}>

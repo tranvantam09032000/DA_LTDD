@@ -1,29 +1,47 @@
+import { getDocs, doc, collection } from "firebase/firestore";
 import React, { useRef, useState, useEffect } from "react";
 import { DrawerLayoutAndroid, Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { db } from "../firebase/firestore.config";
 
 import HomeScreen from "../screens/HomeScreen";
 
 const DrawerComponent = ({navigation}) => {
+  const [categoies, setCategories] = useState([]);
+  const categoriesCollection = collection(db, 'categories');
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const data = await getDocs(categoriesCollection);
+      setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));   
+   
+    }
+    getCategories();
+  }, [categoies])
+
 
   const navigationView = () => (
+
+   
     <View style={[styles.container, styles.navigationContainer]}>
          <View style={{flexDirection:'row', justifyContent:"center", alignItems:'center', padding: 10, backgroundColor:'#2F9FF8'}}>
             <Image style={{width: 70, height: 70,right: 65 }} source = {require('../sources/images/logo.png')} resizeMode="contain"/>
             <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white', right: 40}}>Cao Thắng</Text>
+         
         </View>
-        <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center', padding: 5}}> 
 
+        <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center', padding: 5}}> 
+              
               <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center', padding: 10}} >
                         <Image style={{width: 30, height: 30, right: 80}}  source={require('../sources/images/home_icon.png')} resizeMode="contain"/>
                         <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333', right: 37}}>Trang Chủ</Text> 
-              </TouchableOpacity> 
+              </TouchableOpacity>
 
               <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center',  padding: 10}} >
                         <Image style={{width: 30, height: 30, right: 79}}  source={require('../sources/images/khoa_icon.png')} resizeMode="contain"/>
-                        <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 35}}>Khoa CNTT</Text> 
-                    
-              </TouchableOpacity> 
+                        <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 35}}>Khoa CNTT</Text>
 
+              </TouchableOpacity>
+      
               <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center',  padding: 10}} >
                         <Image style={{width: 30, height: 30, right: 90}}  source={require('../sources/images/icon_home.jpg')} resizeMode="contain"/>
                         <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 48}}>Đào Tạo</Text>         
@@ -58,12 +76,10 @@ const DrawerComponent = ({navigation}) => {
   );
   return (
     <DrawerLayoutAndroid
-     
       drawerWidth={300}
       renderNavigationView={navigationView}
     >
         <HomeScreen/>
-
     </DrawerLayoutAndroid>
   );
 };
