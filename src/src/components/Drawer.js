@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
-import { Button, DrawerLayoutAndroid, Text, StyleSheet, View, Image } from "react-native";
+import React, { useRef, useState, useEffect } from "react";
+import { DrawerLayoutAndroid, Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 
+import HomeScreen from "../screens/HomeScreen";
 
-const DrawerComponent = () => {
-
-  const drawer = useRef(null);
+const DrawerComponent = ({navigation}) => {
 
   const navigationView = () => (
     <View style={[styles.container, styles.navigationContainer]}>
@@ -52,17 +51,19 @@ const DrawerComponent = () => {
 
               <TouchableOpacity style={{flexDirection: 'row',  top: '100%', justifyContent:'center' ,backgroundColor: "#D9D9D9", width: '100%', height:42, alignItems:'center', borderRadius: 5 }} >
                             <Image style={{width: 30, height: 30, right: 40}} resizeMode="contain"/>
-                            <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: 'amber black',  right: 20, marginHorizontal: 40,}}>Đăng Xuất</Text>
+                            <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: 'red',  right: 20, marginHorizontal: 40,}}>Đăng Xuất</Text>
               </TouchableOpacity>  
         </View> 
     </View>
   );
   return (
     <DrawerLayoutAndroid
-      ref={drawer}
-      drawerWidth={250}   
+     
+      drawerWidth={300}
       renderNavigationView={navigationView}
     >
+        <HomeScreen/>
+
     </DrawerLayoutAndroid>
   );
 };
@@ -81,5 +82,4 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-
 export default DrawerComponent;
