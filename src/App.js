@@ -8,6 +8,7 @@ import NewDetailScreen from './src/screens/NewDetailScreen';
 import NewsCategory from './src/screens/NewsCategory';
 import NewsSubcategoryScreen from './src/screens/NewsSubcategoryScreen';
 import DrawerComponent from './src/components/Drawer';
+import Profile from './src/screens/ProfileScreen';
 // import { DrawerContent } from './src/screens/DrawerScreen';
 // import AuthStack from './src/navigation/AboutStack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -26,6 +27,7 @@ const App = ( props) =>{
         <Stack.Screen name='NewsCategory' component={NewsCategory}/>
         <Stack.Screen name='NewsSubcategoryScreen' component={NewsSubcategoryScreen}/>
         <Stack.Screen name='NewDetail' component={NewDetailScreen}/>
+        <Stack.Screen name='Profile' component={Profile}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
