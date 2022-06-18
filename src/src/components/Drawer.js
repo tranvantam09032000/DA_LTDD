@@ -1,9 +1,23 @@
+import { getDocs, doc, collection } from "firebase/firestore";
 import React, { useRef, useState, useEffect } from "react";
 import { DrawerLayoutAndroid, Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { db } from "../firebase/firestore.config";
 
 import HomeScreen from "../screens/HomeScreen";
 
 const DrawerComponent = ({navigation}) => {
+
+  const connect = collection(db, 'news');
+
+  const fetchNews = async () => {
+    const data = await getDocs(connect);
+    setnews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    console.log(fetchNews);
+}
+  useEffect(() => {
+      console.log(fetchNews);
+  }, [])
+
 
   const navigationView = () => (
     <View style={[styles.container, styles.navigationContainer]}>
@@ -11,6 +25,7 @@ const DrawerComponent = ({navigation}) => {
             <Image style={{width: 70, height: 70,right: 65 }} source = {require('../sources/images/logo.png')} resizeMode="contain"/>
             <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white', right: 40}}>Cao Thắng</Text>
         </View>
+
         <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center', padding: 5}}> 
 
               <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center', padding: 10}} >
