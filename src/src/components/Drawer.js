@@ -6,17 +6,18 @@ import { db } from "../firebase/firestore.config";
 import HomeScreen from "../screens/HomeScreen";
 
 const DrawerComponent = ({navigation}) => {
+  const [categoies, setCategories] = useState([]);
+  const categoriesCollection = collection(db, 'categories');
 
-  const connect = collection(db, 'news');
-
-  const fetchNews = async () => {
-    const data = await getDocs(connect);
-    setnews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    console.log(fetchNews);
-}
   useEffect(() => {
-      console.log(fetchNews);
-  }, [])
+    const getCategories = async () => {
+      const data = await getDocs(categoriesCollection);
+      setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));   
+      console.log(categoies);
+    }
+
+    getCategories();
+  }, [categoies])
 
 
   const navigationView = () => (
