@@ -11,9 +11,9 @@ const DrawerComponent = ({navigation}) => {
     getLatestNews(news);
     getViewedNews(news);
 }
-useEffect(() => {
-    fetchNews();
-}, [])
+    useEffect(() => {
+        fetchNews();
+    }, [])
 
 
   const navigationView = () => (
