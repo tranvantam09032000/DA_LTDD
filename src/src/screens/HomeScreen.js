@@ -10,9 +10,10 @@ import {
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase/firestore.config';
 import SliderScreen from "./SliderScreen";
-
 import PostsScreen from "./PostsScreen";
-const HomeScreen = ({ navigation }) => {
+
+
+const HomeScreen = ({ navigation, props}) => {
     const [news, setnews] = useState([]);
     const [latestNews, setlatestNews] = useState([]);
     const [viewedNews, setviewedNews] = useState([]);
@@ -41,17 +42,16 @@ const HomeScreen = ({ navigation }) => {
         fetchNews();
     }, [])
 
-    return (
-        <ScrollView>
-            <View style={styles.container}>
-                <SliderScreen news={news} />
-                <Text style={styles.titleNewPost}>Bài viết mới nhất</Text>
-                <PostsScreen news={latestNews} type={"NewDetail"} countNews={3} navigation={navigation} />
-                <Text style={styles.titleNewView}>Bài viết xem nhiều nhất</Text>
-                <PostsScreen news={viewedNews} type={"NewDetail"} countNews={3} navigation={navigation} />
-            </View>
-        </ScrollView>
-
+    return ( 
+            <ScrollView>
+                <View style={styles.container}>
+                    <SliderScreen news={news}/>
+                    <Text style={styles.titleNewPost}>Bài viết mới nhất</Text>
+                    <PostsScreen news={latestNews} type={"NewDetail"} countNews={3} navigation={navigation} />
+                    <Text style={styles.titleNewView}>Bài viết xem nhiều nhất</Text>
+                    <PostsScreen news={viewedNews} type={"NewDetail"} countNews={3} navigation={navigation} />
+                </View>
+            </ScrollView>          
     );
 }
 
