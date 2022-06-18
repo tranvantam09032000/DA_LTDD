@@ -1,5 +1,5 @@
-import { Text, StyleSheet, View, SafeAreaView, ScrollView, Dimensions, Image } from 'react-native'
-import React, { useState } from 'react'
+import { Text, StyleSheet, View, SafeAreaView, ScrollView, Dimensions, Image, TouchableOpacity } from 'react-native'
+import React, { useState, useEffect } from 'react'
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -8,7 +8,12 @@ const WIDTH = Dimensions.get('window').width;
 export default function SliderScreen(props) {
   const news = props.news;
   const [imageActive, setimageActive] = useState(0);
-  const [titleActive, settitleActive] = useState(props.news[0]?.title);
+  const [titleActive, settitleActive] = useState("");
+
+  useEffect(() => {
+    settitleActive(news[0]?.title)
+  }, [news[0]?.title])
+
   const onChange = (nativeEvent) => {
 
     if (nativeEvent) {
@@ -21,6 +26,7 @@ export default function SliderScreen(props) {
   }
   return (
     <SafeAreaView style={styles.container}>
+
       <View style={styles.wrap}>
         <ScrollView
           onScroll={({ nativeEvent }) => onChange(nativeEvent)}
@@ -30,7 +36,11 @@ export default function SliderScreen(props) {
           style={styles.wrap}>
           {
             news.map((item, index) =>
-              <Image key={'wrap' + index} resizeMode="stretch" style={styles.wrap} source={{ uri: item.image }} />
+
+              <View>
+                <Image key={'wrap' + index} resizeMode="stretch" style={styles.wrap} source={{ uri: item.image }} />
+              </View>
+
             )
           }
 
@@ -42,9 +52,15 @@ export default function SliderScreen(props) {
             </View>
           )}
         </View>
-        <Text style={styles.title}>{titleActive}</Text>
+        <TouchableOpacity
+          key={'TouchableOpacity'}
+          style={styles.button}
+          onPress={() => props.navigation.navigate(props.type, { data: { post: news[imageActive], posts: news } })}>
+          <Text style={styles.title}>{titleActive}</Text>
+        </TouchableOpacity>
         <View style={styles.content}></View>
       </View>
+
     </SafeAreaView>
   )
 }
@@ -53,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   wrap: {
+    zIndex:-10,
     width: WIDTH,
     height: HEIGHT * 0.25
   },
@@ -72,7 +89,7 @@ const styles = StyleSheet.create({
     color: '#5e6355'
   },
   title: {
-    zIndex: 2,
+    zIndex: 10,
     position: 'absolute',
     bottom: 40,
     left: 10,
@@ -81,7 +98,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   content: {
-    zIndex: 1,
+    zIndex: -1,
     position: 'absolute',
     bottom: 0,
     backgroundColor: "#14151673",

@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, Dimensions, Image, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, Dimensions, Image, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import moment from "moment"
 
@@ -15,8 +15,8 @@ export default function PostsScreen(props) {
   useEffect(() => {
     if (props.news.length === 0) return;
     if (countNews === 0 || !countNews) return setposts(props.news);
-    setposts(posts.slice(0, countNews));
-  }, [])
+    setposts(props.news.slice(0, countNews));
+  }, [props.news])
 
   return (
     <View style={styles.container}>
@@ -44,6 +44,10 @@ export default function PostsScreen(props) {
           </TouchableOpacity>
         )
       }
+      <Pressable style={styles.buttonSeeMore} onPress={() => {console.log("click")}}>
+      <Image  style={{width:20, height:20}} source={require('../sources/images/down-arrow.png')} />
+       <Text style={{fontSize:18}}> Xem thêm</Text>
+      </Pressable>
     </View>
   )
 }
@@ -84,5 +88,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 5,
     marginBottom: 5
+  },
+  buttonSeeMore:{
+    flex:1,
+    width:"100%",
+    marginVertical:5,
+    height:30,
+    backgroundColor:'#e1e4ea',
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row'
   }
 })
