@@ -54,8 +54,6 @@ const DrawerComponent = () => {
                             <Image style={{width: 30, height: 30, right: 40}} resizeMode="contain"/>
                             <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: 'amber black',  right: 20, marginHorizontal: 40,}}>Đăng Xuất</Text>
               </TouchableOpacity>  
-
-
         </View> 
     </View>
   );
