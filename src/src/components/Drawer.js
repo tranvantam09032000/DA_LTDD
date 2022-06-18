@@ -13,7 +13,13 @@ const DrawerComponent = () => {
             <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white', right: 40}}>Cao Thắng</Text>
         </View>
         <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center', padding: 5}}> 
-         
+
+              <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center', padding: 10}} >
+                        <Image style={{width: 30, height: 30, right: 80}}  source={require('../sources/images/home_icon.png')} resizeMode="contain"/>
+                        <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333', right: 37}}>Trang Chủ</Text> 
+              </TouchableOpacity> 
+
+
         </View> 
     </View>
   );
