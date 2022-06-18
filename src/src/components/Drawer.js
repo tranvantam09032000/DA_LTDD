@@ -8,9 +8,9 @@ const DrawerComponent = () => {
 
   const navigationView = () => (
     <View style={[styles.container, styles.navigationContainer]}>
-        <View style={{flexDirection:'row', justifyContent:"center", alignItems:'center', padding: 10, backgroundColor:'#2F9FF8'}}>
-            <Image style={{width: 80, height: 80 }} source = {require('../sources/images/logo.png')} resizeMode="contain"/>
-            <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white'}}>CaoThang</Text>
+         <View style={{flexDirection:'row', justifyContent:"center", alignItems:'center', padding: 10, backgroundColor:'#2F9FF8'}}>
+            <Image style={{width: 70, height: 70,right: 65 }} source = {require('../sources/images/logo.png')} resizeMode="contain"/>
+            <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white', right: 40}}>Cao Thắng</Text>
         </View>
             
         
