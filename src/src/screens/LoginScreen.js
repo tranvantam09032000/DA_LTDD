@@ -13,113 +13,138 @@ import{
     Button,
     Dimensions
 }from 'react-native';
+import { authentication } from "../database/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import NetInfo from "@react-native-community/netinfo";
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-const {height, width} = Dimensions.get('window');
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
 
-const LoginScreen = ({navigation}) => {
-
+const LoginScreen = ({navigation, route}) => {
+    
+    const [connected, setConneted] = useState(true);
     const [isLoading, setisLoading] = useState(false);
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(null);
     const [password, setPassword] = useState('');
-    const [error, setError] = useState({
-        email: false,
-        password: false
-    });
-    const auth = getAuth();
+    const [error, setError] = useState(false);
+
+   useEffect(() => {
+      const unsubcrise =  NetInfo.addEventListener(state => {
+            setConneted(state.isConnected);
+    
+        });
+       return () => unsubcrise();
+   }, [])
 
     const handleLogin = () => {
-        if(email == "" || password == "") {
-            setisLoading(false);
-                alert('Vui lòng nhập Tài Khoản, Mật Khẩu!');
-                
-            }else {
-                setisLoading(true);
-                signInWithEmailAndPassword(auth, email, password)
+      
+        if(email == "" || password == "" || password.length < 6 ){
+            setError(true)
+            setisLoading(false)
+            }
+            else{
+                setisLoading(true)  
+                signInWithEmailAndPassword(authentication, email ?? route.params?.email, password)
                 .then(userCredentials => {
                     const user = userCredentials.user;
                     setisLoading(false)
                     navigation.navigate('Home');
                 })
                 .catch(() => {
-                    setisLoading(false);
-                    alert('Tài Khoản hoặc Mật Khẩu Không Chính Xác!')
+                    setError(true)
+                    setisLoading(false)
                 })
-            }  
-            
+       }      
 }
     return(
-       <SafeAreaView style={{flex: 1}}>
+            
             <ImageBackground style={styles.container} source={require('../sources/images/background.png')}>
+                <SafeAreaView>
                 <View style = {styles.logo}>
                     <Image source = {require('../sources/images/logo.png')}/>
-                        <Text style = {styles.textDN}>ĐĂNG NHẬP</Text>
+                        <Text style = {styles.textDN}>ĐĂNG NHẬP</Text> 
                 </View>
                     <View style = {styles.inputContainer}>
+ 
                     <TextInput style={styles.textinputE}
-                           placeholder='Email'
-                            value={email}
-                            onChangeText={text => setEmail(text)} />
+                            placeholder='Email'
+                            value={email ?? route.params?.email}
+                            onChangeText={text => {setEmail(text)
+                            setError(false)}} />
                             <Image style={styles.icon} source = {require('../sources/images/iconEmail.png')} />
                         
                         <TextInput style={styles.textinputP}
                             placeholder="Mật Khẩu"
                             value={password}
-                            onChangeText = {text => setPassword(text)}
+                            onChangeText = {text => {setPassword(text)
+                            setError(false)}}
                             secureTextEntry />
-                              <Image style={styles.icon} source = {require('../sources/images/iconPass.png')} />
+                              <Image style={styles.icon} source = {require('../sources/images/iconPass.png')} />  
+                              {error && <Text style={{position:"absolute", marginLeft: 40, top: '60%', color: 'red', fontFamily:'Oswald-Bold', fontSize: 18}}>
+                                  *Lỗi Đăng Nhập!
+                                  </Text>}
+            
+                              {!connected && <Text style={{position:"absolute", marginLeft: 40, top: '60%', color: 'red', fontFamily:'Oswald-Bold', fontSize: 18}}>
+                                  *Lỗi Kết Nối!
+                                  </Text>}
 
-                            <TouchableOpacity style={styles.buttonDN} 
-                                onPress={handleLogin}>
-                                <Text style={styles.textbtnDN}>Đăng Nhập</Text>
-                            </TouchableOpacity>
-                            <ActivityIndicator style={isLoading ? {opacity: 1, top: -50} : {opacity: 0, top: -50}} 
+                                <ActivityIndicator style={isLoading ? {opacity: 1, top: 20} : {opacity: 0, top: 20}} 
                                 size="large" 
-                                color="#0000ff" />              
-                    </View>
+                                color="#0000ff" /> 
+                                <TouchableOpacity style={styles.buttonDN} 
+                                    onPress={handleLogin}>  
+                                    <Text style={styles.textbtnDN}>Đăng Nhập</Text>
+                              </TouchableOpacity>
+                        </View>
                             
-                    <Text style={{top: '30%', alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
+                    <Text style={{top: 68,alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
                     onPress={() => navigation.navigate('Register')}
                     >
                     Đăng Ký?
-                    </Text>   
+                    </Text>  
+                </SafeAreaView>
             </ImageBackground>
-            </SafeAreaView>
+   
+  
     )
 }
 export default LoginScreen;
 
 const styles = StyleSheet.create({
     container :{
-        flex: 1,
+        width: WIDTH,
+        height: HEIGHT,
     },
     logo: {
-        flexDirection:'column',
         alignItems: 'center',
-        top: 30, 
+        marginTop: 30,
     },
     textDN: {
-        top: 20,
+        padding: 10,
+        marginTop: 30,
         fontSize: 48,
         color: "#0000FE",
         fontFamily:'Oswald-Bold',
     },
     inputContainer: {
-        top: 30,
-        flexDirection:'column',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        marginTop: 30,
         padding: 30,
     },
     icon: {
+      
         width: 25,
         left: 14,
         height: 25,
         top: -20,
     },
+  
 
     textinputE:{
         top: 20,
         paddingLeft: 47,
-        height: 55,
+        alignItems: 'center',
         fontSize: 20, 
         borderRadius: 25,
         fontFamily:'Oswald-Bold',
@@ -129,32 +154,24 @@ const styles = StyleSheet.create({
     textinputP:{
         paddingLeft: 47,
         top: 20,
-        height: 55,
         fontSize: 20, 
         borderRadius: 25,
         fontFamily:'Oswald-Bold',
         backgroundColor: 'white',
     },
     buttonDN:{
+        marginTop: 50,
         alignSelf:'center',
-        top: 60,
         width: 250,
         height: 60,
         borderRadius: 50,
         backgroundColor: '#0000FE',
     },
     textbtnDN: {
-        top: 5,
+        margin: 2,
         alignSelf:'center',
         color: '#FFFFFF',
         fontSize: 26,
         fontFamily:'Oswald-Bold',
-    },
-    textError:{
-
-    },
-    atvIndicator: {
-        
-        
     },
 })
