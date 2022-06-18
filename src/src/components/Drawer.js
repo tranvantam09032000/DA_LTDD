@@ -48,7 +48,12 @@ const DrawerComponent = () => {
               <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center',  padding: 10}} >
                         <Image style={{width: 30, height: 30, right: 50}}  source={require('../sources/images/icon_home.jpg')} resizeMode="contain"/>
                         <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 48, marginHorizontal: 40,}}>Học Phí</Text>   
-              </TouchableOpacity> 
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{flexDirection: 'row',  top: '100%', justifyContent:'center' ,backgroundColor: "#D9D9D9", width: '100%', height:42, alignItems:'center', borderRadius: 5 }} >
+                            <Image style={{width: 30, height: 30, right: 40}} resizeMode="contain"/>
+                            <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: 'amber black',  right: 20, marginHorizontal: 40,}}>Đăng Xuất</Text>
+              </TouchableOpacity>  
 
 
         </View> 
