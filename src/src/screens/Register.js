@@ -13,7 +13,8 @@ import{
     Dimensions,
     Alert 
 }from 'react-native';
-import { authentication } from "../database/auth";
+import { authentication } from "../firebase/firestore.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import NetInfo from "@react-native-community/netinfo";
 
 const HEIGHT = Dimensions.get('screen').height;
@@ -37,7 +38,6 @@ const RegisterScreen = ({navigation}) => {
     useEffect(() => {
         const unsubcrise =  NetInfo.addEventListener(state => {
               setConneted(state.isConnected);
-      
           });
          return () => unsubcrise();
      }, [])

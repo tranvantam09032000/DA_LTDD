@@ -19,6 +19,8 @@ target 'DA_LTDD' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
   target 'DA_LTDDTests' do
     inherit! :complete
     # Pods for testing

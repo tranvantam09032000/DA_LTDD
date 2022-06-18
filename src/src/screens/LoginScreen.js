@@ -10,12 +10,11 @@ import{
     TouchableOpacity,
     ActivityIndicator,
     TextInput,
-    Button,
     Dimensions
 }from 'react-native';
-import { authentication } from "../database/auth";
+import { authentication } from "../firebase/firestore.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import NetInfo from "@react-native-community/netinfo";
+import  NetInfo from "@react-native-community/netinfo"
 
 const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
@@ -29,15 +28,14 @@ const LoginScreen = ({navigation, route}) => {
     const [error, setError] = useState(false);
 
    useEffect(() => {
-      const unsubcrise =  NetInfo.addEventListener(state => {
+      const unsubcrise = NetInfo.addEventListener(state => {
             setConneted(state.isConnected);
-    
         });
        return () => unsubcrise();
    }, [])
 
     const handleLogin = () => {
-      
+
         if(email == "" || password == "" || password.length < 6 ){
             setError(true)
             setisLoading(false)
@@ -98,9 +96,9 @@ const LoginScreen = ({navigation, route}) => {
                         </View>
                             
                     <Text style={{top: 68,alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
-                    onPress={() => navigation.navigate('Register')}
-                    >
-                    Đăng Ký?
+                        onPress={() => navigation.navigate('Register')}
+                        >
+                        Đăng Ký?
                     </Text>  
                 </SafeAreaView>
             </ImageBackground>
