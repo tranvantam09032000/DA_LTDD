@@ -1,4 +1,5 @@
-import * as firebase from "firebase";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyBvWBYAVBZiOitTA4p9QGNQ8atF1JW05ak",
   authDomain: "fir-news-410f3.firebaseapp.com",
@@ -8,13 +9,7 @@ const firebaseConfig = {
   appId: "1:1088824268980:web:449cfa13095d850cc09fe1"
 };
 
-let app;
+const app = initializeApp(firebaseConfig);
 
-if(firebase.apps.length === 0){
-  app = firebase.initializeApp(firebaseConfig);
-}else{
-  app = firebase.app();
-}
+export const authentication = getAuth(app);
 
-const auth = firebase.auth();
-export {auth}
