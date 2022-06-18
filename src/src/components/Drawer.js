@@ -35,6 +35,11 @@ const DrawerComponent = () => {
                         <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 37}}>CTTT-HSSV</Text>     
               </TouchableOpacity>
               
+              <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center',  padding: 10}} >
+                        <Image style={{width: 35, height: 35, right: 54}}  source={require('../sources/images/doanthanhnien_icon.png')} resizeMode="contain"/>
+                        <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 14}}>Đoàn Thanh Niên</Text>
+                    </TouchableOpacity> 
+
         </View> 
     </View>
   );
