@@ -25,6 +25,10 @@ const DrawerComponent = () => {
                     
               </TouchableOpacity> 
 
+              <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center',  padding: 10}} >
+                        <Image style={{width: 30, height: 30, right: 90}}  source={require('../sources/images/icon_home.jpg')} resizeMode="contain"/>
+                        <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333',  right: 48}}>Đào Tạo</Text>         
+              </TouchableOpacity>
         </View> 
     </View>
   );
