@@ -7,10 +7,21 @@ const WIDTH = Dimensions.get('window').width;
 
 export default function PostsScreen(props) {
   const [posts, setposts] = useState([]);
+  const [countNews, setcountNews] = useState(3);
   const type = props.type;
-  const countNews = props.countNews;
   const formatCreated = (date) => {
     return moment(date * 1000).format('HH:mm DD/MM/YYYY');
+  }
+  const seeMore = ()=>{
+    let count = countNews;
+    if(countNews === props.news.length){
+      setposts(props.news.slice(0, 3));
+      setcountNews(3);
+      return;
+    }
+    count ++;
+    setposts(props.news.slice(0, count));
+    setcountNews(count);
   }
   useEffect(() => {
     if (props.news.length === 0) return;
@@ -44,9 +55,15 @@ export default function PostsScreen(props) {
           </TouchableOpacity>
         )
       }
-      <Pressable style={styles.buttonSeeMore} onPress={() => {console.log("click")}}>
-      <Image  style={{width:20, height:20}} source={require('../sources/images/down-arrow.png')} />
+      <Pressable style={styles.buttonSeeMore} onPress={() => {seeMore()}}>
+      {countNews === props.news.length?
+      
+      <Image  style={{width:20, height:20}} source={require('../sources/images/up-arrow.png')} />:
+      <Image  style={{width:20, height:20}} source={require('../sources/images/down-arrow.png')} />}
+       {countNews === props.news.length?
+       <Text style={{fontSize:18}}> Thu nhỏ</Text>:
        <Text style={{fontSize:18}}> Xem thêm</Text>
+       }
       </Pressable>
     </View>
   )

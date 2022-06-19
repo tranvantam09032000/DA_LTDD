@@ -5,10 +5,11 @@ import {
     StyleSheet,
     Image,
     Dimensions,
-    ScrollView
+    ScrollView,
+    Pressable
 } from 'react-native';
 import moment from "moment"
-import { collection, getDocs, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from '../firebase/firestore.config';
 
 const HEIGHT = Dimensions.get('window').height;
@@ -16,6 +17,8 @@ const WIDTH = Dimensions.get('window').width;
 
 const NewDetailScreen = (props) => {
     const [infoNew, setinfoNew] = useState({});
+    const [liked, setliked] = useState(false);
+    const [countLiked, setcountLiked] = useState(props.route.params.data.post.like);
     useEffect(() => {
         updateViewNew(props.route.params.data.post.id, props.route.params.data.post.view);
         setinfoNew(props.route.params.data.post);
@@ -34,8 +37,19 @@ const NewDetailScreen = (props) => {
         return secondContent?.join(" ");
     }
     const updateViewNew = async (id, countView) => {
+        let count = countView;
+        count++;
         const newDoc = doc(db, "news", id);
-        await updateDoc(newDoc, { view: countView + 1 });
+        await updateDoc(newDoc, { view: count });
+    }
+    const likedNew = async (id) => {
+        let count = countLiked;
+        let like = !liked;
+        count = like ? count + 1 : count - 1;
+        const newDoc = doc(db, "news", id);
+        setliked(like);
+        setcountLiked(count)
+        await updateDoc(newDoc, { like: count });
     }
     return (
         <ScrollView>
@@ -50,6 +64,12 @@ const NewDetailScreen = (props) => {
                         <Text style={styles.date}>{formatCreated(infoNew.created?.seconds)}</Text>
                     </View>
                 </View>
+                <Text style={{ fontSize: 20, marginTop: 20, fontWeight: '500', paddingHorizontal: 10 }}>{infoNew.title}</Text>
+                <Pressable style={styles.buttonLiked} onPress={() => { likedNew(props.route.params.data.post.id) }}>{
+                    liked ? <Image style={{ width: 40, height: 40 }} source={require('../sources/images/heart.png')} /> :
+                        <Image style={{ width: 40, height: 40 }} source={require('../sources/images/unheart.png')} />
+                }
+                </Pressable>
                 <Text style={styles.content}>{firstNewContent(infoNew.content)}</Text>
                 <Image resizeMode="stretch" style={styles.image} source={{ uri: infoNew.image }}></Image>
                 <Text style={styles.content}>{secondNewContent(infoNew.content)}</Text>
@@ -82,7 +102,7 @@ const styles = StyleSheet.create({
         position: "absolute"
     },
     titleNew: {
-        marginTop: 20,
+        marginTop: 40,
         fontSize: 28,
         textAlign: 'center',
         fontWeight: '400',
@@ -108,7 +128,12 @@ const styles = StyleSheet.create({
     content: {
         marginVertical: 20,
         marginHorizontal: 10,
-        fontSize: 15
+        fontSize: 15,
+    },
+    buttonLiked: {
+        position: 'relative',
+        left: WIDTH * 0.88,
+        top: 10
     }
 
 })
