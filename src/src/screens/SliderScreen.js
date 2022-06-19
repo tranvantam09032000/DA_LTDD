@@ -8,11 +8,6 @@ const WIDTH = Dimensions.get('window').width;
 export default function SliderScreen(props) {
   const news = props.news;
   const [imageActive, setimageActive] = useState(0);
-  const [titleActive, settitleActive] = useState("");
-
-  useEffect(() => {
-    settitleActive(news[0]?.title)
-  }, [news[0]?.title])
 
   const onChange = (nativeEvent) => {
 
@@ -20,7 +15,6 @@ export default function SliderScreen(props) {
       const slider = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
       if (slider != imageActive) {
         setimageActive(slider);
-        settitleActive(news[slider].title);
       }
     }
   }
@@ -36,14 +30,17 @@ export default function SliderScreen(props) {
           style={styles.wrap}>
           {
             news.map((item, index) =>
-
-              <View>
+              <View key={'view' + index}>
                 <Image key={'wrap' + index} resizeMode="stretch" style={styles.wrap} source={{ uri: item.image }} />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => props.navigation.navigate(props.type, { data: { post: news[imageActive], posts: news } })}>
+                  <Text style={styles.title}>{item.title}</Text>
+                </TouchableOpacity>
+                <View style={styles.content}></View>
               </View>
-
             )
           }
-
         </ScrollView>
         <View style={styles.wrapDot}>
           {news.map((item, index) =>
@@ -52,13 +49,7 @@ export default function SliderScreen(props) {
             </View>
           )}
         </View>
-        <TouchableOpacity
-          key={'TouchableOpacity'}
-          style={styles.button}
-          onPress={() => props.navigation.navigate(props.type, { data: { post: news[imageActive], posts: news } })}>
-          <Text style={styles.title}>{titleActive}</Text>
-        </TouchableOpacity>
-        <View style={styles.content}></View>
+
       </View>
 
     </SafeAreaView>
@@ -69,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   wrap: {
-    zIndex:-10,
+    zIndex: -10,
     width: WIDTH,
     height: HEIGHT * 0.25
   },
