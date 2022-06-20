@@ -34,6 +34,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#E0F0F8',
     height:200,
   },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom:10,
+    alignSelf:'center',
+    position: 'absolute',
+    marginTop:130
+  },
  
  
 });
