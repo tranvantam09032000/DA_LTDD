@@ -43,7 +43,7 @@ export default function PostsScreen(props) {
               <View style={{ flex: 1 }} key={'body' + index}>
                 <View style={styles.contentNew} key={'contentNew' + index}>
                   <Text style={styles.title} key={'title' + index}>{post.title}</Text>
-                  <Text style={styles.content} key={'content' + index}>{post.content}</Text>
+                  <Text style={styles.content} key={'content' + index}>{post.content.slice(0,50) + '...'}</Text>
                 </View>
                 <View style={styles.infoNew} key={'infoNew' + index}>
                   <Text style={styles.author} key={'author' + index}>{post.author}</Text>
