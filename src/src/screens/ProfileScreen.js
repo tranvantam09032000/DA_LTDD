@@ -11,11 +11,21 @@ import {
 const Profile = () => {
 
     return (
-      <View>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.headerContent}>
+                <Image style={styles.avatar}
+                  source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
 
-      </View>
+                <Text style={styles.name}>Nguyễn Khánh Toàn</Text>
+                <Text style={styles.userInfo}>0306181081@caothang.edu.vn </Text>
+                <Text style={styles.userInfo}>Florida </Text>
+            </View>
+          </View>
+        </View>
+
     );
-  }
+}
 
 export default Profile
 
