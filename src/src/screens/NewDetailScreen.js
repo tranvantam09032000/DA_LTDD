@@ -64,7 +64,7 @@ const NewDetailScreen = (props) => {
                         <Text style={styles.date}>{formatCreated(infoNew.created?.seconds)}</Text>
                     </View>
                 </View>
-                <Text style={{ fontSize: 20, marginTop: 20, fontWeight: '500', paddingHorizontal: 10 }}>{infoNew.title}</Text>
+                <Text style={{ fontSize: 20, marginTop: 10, fontWeight: '500', paddingHorizontal: 10,textAlign: 'center',  }}>{infoNew.title}</Text>
                 <Pressable style={styles.buttonLiked} onPress={() => { likedNew(props.route.params.data.post.id) }}>{
                     liked ? <Image style={{ width: 40, height: 40 }} source={require('../sources/images/heart.png')} /> :
                         <Image style={{ width: 40, height: 40 }} source={require('../sources/images/unheart.png')} />
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F4F9F8',
-        height: HEIGHT
     },
     imageTitle: {
         width: WIDTH,
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     },
     titleNew: {
         marginTop: 40,
-        fontSize: 28,
+        fontSize: 24,
         textAlign: 'center',
         fontWeight: '400',
         color: '#e9ecef'
@@ -116,12 +115,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     author: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '400',
         color: '#e9ecef'
     },
     date: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '400',
         color: '#e9ecef'
     },
