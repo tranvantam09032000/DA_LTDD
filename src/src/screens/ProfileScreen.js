@@ -138,16 +138,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   dangxuatbtn:{
+
+    top: 100,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    width: 200,
+    width: 250,
     height: 50,
     backgroundColor: '#FF0404', 
   },
   textDangxuat:{
     alignItems: 'center',
-    fontSize:18,
+    fontSize: 18,
     color:"white",
     fontFamily:'Oswald-Bold',
   
