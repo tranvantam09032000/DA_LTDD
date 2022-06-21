@@ -67,7 +67,7 @@ const RegisterScreen = ({navigation}) => {
                             })    
                         }
                 }   
-                 
+             
 }
    
     return(   

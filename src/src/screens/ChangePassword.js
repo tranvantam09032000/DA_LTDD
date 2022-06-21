@@ -8,7 +8,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const ChangePassword = () => {
+const ChangePassword = ({navigation, route}) => {
+    const {email} = route.params;
 
     return (
         <View style={styles.container}>
@@ -17,7 +18,7 @@ const ChangePassword = () => {
                 <Image style={styles.avatar} source={require('../sources/images/logo.png')} resizeMode='contain'/>
                 <Text style={styles.name}>Nguyễn Khánh Toàn</Text>
                 <Text style={styles.userclass}>CDTH18PMA</Text>
-                <Text style={styles.usermssv}>0306181081@caothang.edu.vn </Text>
+                <Text style={styles.usermssv}>{email}</Text>
             </View>
           </View>
           
