@@ -18,7 +18,9 @@ const WIDTH = Dimensions.get('window').width;
 const NewDetailScreen = (props) => {
     const [infoNew, setinfoNew] = useState({});
     const [liked, setliked] = useState(false);
-    const [countLiked, setcountLiked] = useState(props.route.params.data.post.like);
+    const [viewNew, setviewNew] = useState(props.route.params.data.post.view);
+    const [likeNew, setlikeNew] = useState(props.route.params.data.post.like);
+
     useEffect(() => {
         updateViewNew(props.route.params.data.post.id, props.route.params.data.post.view);
         setinfoNew(props.route.params.data.post);
@@ -40,15 +42,16 @@ const NewDetailScreen = (props) => {
         let count = countView;
         count++;
         const newDoc = doc(db, "news", id);
+        setviewNew(count);
         await updateDoc(newDoc, { view: count });
     }
     const likedNew = async (id) => {
-        let count = countLiked;
+        let count = likeNew;
         let like = !liked;
         count = like ? count + 1 : count - 1;
         const newDoc = doc(db, "news", id);
         setliked(like);
-        setcountLiked(count)
+        setlikeNew(count)
         await updateDoc(newDoc, { like: count });
     }
     return (
@@ -64,12 +67,22 @@ const NewDetailScreen = (props) => {
                         <Text style={styles.date}>{formatCreated(infoNew.created?.seconds)}</Text>
                     </View>
                 </View>
-                <Text style={{ fontSize: 20, marginTop: 10, fontWeight: '500', paddingHorizontal: 10,textAlign: 'center',  }}>{infoNew.title}</Text>
-                <Pressable style={styles.buttonLiked} onPress={() => { likedNew(props.route.params.data.post.id) }}>{
-                    liked ? <Image style={{ width: 40, height: 40 }} source={require('../sources/images/heart.png')} /> :
-                        <Image style={{ width: 40, height: 40 }} source={require('../sources/images/unheart.png')} />
-                }
-                </Pressable>
+                <Text style={{ fontSize: 28, marginTop: 10, fontWeight: '500', paddingHorizontal: 10, textAlign: 'center', }}>{infoNew.title}</Text>
+                <View style={styles.interactive}>
+                    <View style={styles.view}>
+                        <Image style={{ width: 40, height: 40 }} source={require('../sources/images/view.png')} />
+                        <Text style={{textAlign:'center'}}>{viewNew}</Text>
+                    </View>
+                    <View style={styles.like}>
+                        <Pressable  onPress={() => { likedNew(props.route.params.data.post.id) }}>{
+                            liked ? <Image style={{ width: 40, height: 40 }} source={require('../sources/images/heart.png')} /> :
+                                <Image style={{ width: 40, height: 40 }} source={require('../sources/images/unheart.png')} />
+                        }
+                        </Pressable>
+                        <Text style={{textAlign:'center'}}>{likeNew}</Text>
+                    </View>
+                </View>
+
                 <Text style={styles.content}>{firstNewContent(infoNew.content)}</Text>
                 <Image resizeMode="stretch" style={styles.image} source={{ uri: infoNew.image }}></Image>
                 <Text style={styles.content}>{secondNewContent(infoNew.content)}</Text>
@@ -129,10 +142,18 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         fontSize: 15,
     },
-    buttonLiked: {
-        position: 'relative',
-        left: WIDTH * 0.88,
-        top: 10
+    interactive:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        paddingHorizontal:10,
+        marginTop:10
+    },
+    like:{
+
+    },
+    view:{
+
     }
 
 })
