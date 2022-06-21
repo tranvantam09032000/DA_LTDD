@@ -22,7 +22,10 @@ const ChangePassword = () => {
           </View>
           
             <View style={styles.body}>
-              
+              <Text>
+                Change Password
+              </Text>
+
             </View>
 
         </View>
