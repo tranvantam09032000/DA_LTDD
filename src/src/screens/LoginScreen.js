@@ -46,7 +46,10 @@ const LoginScreen = ({navigation, route}) => {
                 .then(userCredentials => {
                     const user = userCredentials.user;
                     setisLoading(false)
-                    navigation.navigate('Profile');
+                    navigation.navigate('Profile',{
+                        email
+                        
+                      });
                 })
                 .catch(() => {
                     setError(true)
@@ -63,7 +66,6 @@ const LoginScreen = ({navigation, route}) => {
                         <Text style = {styles.textDN}>ĐĂNG NHẬP</Text> 
                 </View>
                     <View style = {styles.inputContainer}>
- 
                     <TextInput style={styles.textinputE}
                             placeholder='Email'
                             value={email ?? route.params?.email}
@@ -89,17 +91,22 @@ const LoginScreen = ({navigation, route}) => {
                                 <ActivityIndicator style={isLoading ? {opacity: 1, top: 20} : {opacity: 0, top: 20}} 
                                 size="large" 
                                 color="#0000ff" /> 
-                                <TouchableOpacity style={styles.buttonDN} 
-                                    onPress={handleLogin}>  
+                           
+                         <TouchableOpacity 
+                                            style={styles.buttonDN} 
+                                    
+                                            onPress={handleLogin}>  
                                     <Text style={styles.textbtnDN}>Đăng Nhập</Text>
                               </TouchableOpacity>
                         </View>
+                       
+                       
                             
-                    <Text style={{top: 68,alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
+                    <Text visisble="true" style={{top: 68,alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
                         onPress={() => navigation.navigate('Register')}
                         >
                         Đăng Ký?
-                    </Text>  
+                    </Text>
                 </SafeAreaView>
             </ImageBackground>
    

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,8 +7,9 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-
-const Profile = ({navigation}) => {
+import LoginScreen from './LoginScreen';
+const Profile = ({navigation, route}) => {
+  const {email}= route.params;
 
     return (
         <View style={styles.container}>
@@ -17,7 +18,7 @@ const Profile = ({navigation}) => {
                 <Image style={styles.avatar} source={require('../sources/images/logo.png')} resizeMode='contain'/>
                 <Text style={styles.name}>Nguyễn Khánh Toàn</Text>
                 <Text style={styles.userclass}>CDTH18PMA</Text>
-                <Text style={styles.usermssv}>0306181081@caothang.edu.vn </Text>
+                <Text style={styles.usermssv}>{email}</Text>
             </View>
           </View>
           
@@ -32,7 +33,7 @@ const Profile = ({navigation}) => {
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity onPress={() => navigation.navigate('EditProfile')} style={styles.button}>
+                      <TouchableOpacity onPress={() => navigation.navigate('EditProfile',{email} )} style={styles.button}>
                         <View style={styles.gapButton}>
                           <Text style={styles.usermssv}>
                            Thay đổi thông tin
@@ -41,7 +42,7 @@ const Profile = ({navigation}) => {
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}  style={styles.button}>
+                      <TouchableOpacity onPress={() => navigation.navigate('ChangePassword', {email})}  style={styles.button}>
                         <View style={styles.gapButton}>
                           <Text style={styles.usermssv}>
                             Đổi mật khẩu
@@ -50,7 +51,9 @@ const Profile = ({navigation}) => {
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity onPress={() => navigation.navigate('Login')}  style={styles.dangxuatbtn}>
+           
+                      <TouchableOpacity onPress={() => navigation.navigate('Login')}  
+                        style={styles.dangxuatbtn}>
                        
                           <Text style={styles.textDangxuat}>
                            Đăng Xuất
