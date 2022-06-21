@@ -30,21 +30,21 @@ const ChangePassword = ({navigation, route}) => {
                       <Text style={styles.usermssv}>
                         Mật khẩu cũ:
                       </Text>
-                      <TextInput style={styles.customborder} placeholder='Nguyễn Văn A'/>
+                      <TextInput style={styles.customborder} secureTextEntry placeholder='*********'/>
                   </View>
 
-                  <View style={{width: 300, height: 40, flexDirection: 'column', justifyContent: 'center'}}>
+                  <View style={{width: 300, height: 40, flexDirection: 'column', justifyContent: 'center', bottom: 10}}>
                       <Text style={styles.usermssv}>
                         Mật khẩu mới: 
                       </Text>
-                      <TextInput style={styles.customborder} placeholder='0306@caothang.edu'/>
-                  </View>
+                      <TextInput style={styles.customborder} secureTextEntry placeholder='*********'/>
+                  </View> 
 
-                  <View style={{width: 300, height: 40, flexDirection: 'column', justifyContent: 'center'}}>
+                  <View style={{width: 300, height: 40, flexDirection: 'column', justifyContent: 'center', bottom: 10}}>
                       <Text style={styles.usermssv}>
                         Xác nhận mật khẩu:
                       </Text>
-                      <TextInput style={styles.customborder} placeholder='0306@caothang.edu'/>
+                      <TextInput style={styles.customborder} secureTextEntry placeholder='**********'/>
                   </View>
 
                  
@@ -116,7 +116,8 @@ const styles = StyleSheet.create({
       borderBottomWidth: 2,
       borderBottomColor: '#C4C4C4',
       fontSize: 16,
-      fontFamily:'Oswald-Light'
+      fontFamily:'Oswald-regular',
+      fontWeight:'500'
     }
 });
 
