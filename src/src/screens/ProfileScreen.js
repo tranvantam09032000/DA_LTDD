@@ -21,14 +21,16 @@ const Profile = () => {
             </View>
           </View>
           
-          <View style={styles.body}>
-            <View style={styles.item}>
-              <View style={styles.iconContent}>
-                  <Image style={styles.icon} source={{uri: 'https://img.icons8.com/color/70/000000/cottage.png'}}/>
-                </View>
-                <View style={styles.infoContent}>
-                  <Text style={styles.info}>Home</Text>
-              </View>
+            <View style={styles.body}>
+              <View style={styles.viewButton}>
+       
+                      <TouchableOpacity>
+                          <Text>
+                            Bài viết đã xem
+                          </Text>
+                          <Image/>
+                      </TouchableOpacity>
+                
               </View>
             </View>
 
@@ -86,8 +88,10 @@ const styles = StyleSheet.create({
     height:500,
     alignItems:'center',
   },
-  item:{
-    flexDirection : 'row',
+  viewButton:{
+    flexDirection : 'column',
+
+    alignItems: 'center'
   },
   infoContent:{
     flex:1,
