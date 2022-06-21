@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const Profile = ({navigation}) => {
+const EditProfile = () => {
 
     return (
         <View style={styles.container}>
@@ -22,44 +22,9 @@ const Profile = ({navigation}) => {
           </View>
           
             <View style={styles.body}>
-              <View style={styles.viewButton}>
-                      <TouchableOpacity style={styles.button}>
-                        <View style={styles.gapButton}>
-                          <Text style={styles.usermssv}>
-                            Bài viết đã xem
-                          </Text>
-                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
-                        </View>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity onPress={() => navigation.navigate('EditProfile')} style={styles.button}>
-                        <View style={styles.gapButton}>
-                          <Text style={styles.usermssv}>
-                           Thay đổi thông tin
-                          </Text>
-                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
-                        </View>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}  style={styles.button}>
-                        <View style={styles.gapButton}>
-                          <Text style={styles.usermssv}>
-                            Đổi mật khẩu
-                          </Text>
-                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
-                        </View>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity onPress={() => navigation.navigate('Login')}  style={styles.dangxuatbtn}>
-                       
-                          <Text style={styles.textDangxuat}>
-                           Đăng Xuất
-                          </Text>  
-                   
-                      </TouchableOpacity>
-                      
-                
-              </View>
+              <Text>
+                EDIT PROFILE
+              </Text>
             </View>
 
         </View>
@@ -67,7 +32,7 @@ const Profile = ({navigation}) => {
     );
 }
 
-export default Profile
+export default EditProfile
 
 const styles = StyleSheet.create({
  

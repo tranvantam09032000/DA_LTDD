@@ -46,7 +46,7 @@ const LoginScreen = ({navigation, route}) => {
                 .then(userCredentials => {
                     const user = userCredentials.user;
                     setisLoading(false)
-                    navigation.navigate('Home');
+                    navigation.navigate('Profile');
                 })
                 .catch(() => {
                     setError(true)
