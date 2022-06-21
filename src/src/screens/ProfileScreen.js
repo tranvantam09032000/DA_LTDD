@@ -49,6 +49,14 @@ const Profile = () => {
                           <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
                         </View>
                       </TouchableOpacity>
+
+                      <TouchableOpacity style={styles.dangxuatbtn}>
+                       
+                          <Text style={styles.textDangxuat}>
+                           Đăng Xuất
+                          </Text>  
+                   
+                      </TouchableOpacity>
                       
                 
               </View>
@@ -111,6 +119,8 @@ const styles = StyleSheet.create({
   },
   viewButton:{
     flexDirection : 'column',
+    justifyContent:'center',
+    alignItems: 'center',
     paddingTop: 20,
   },
   button: {
@@ -127,6 +137,21 @@ const styles = StyleSheet.create({
     alignItems:'center',
     flexDirection: 'row',
   },
+  dangxuatbtn:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    width: 200,
+    height: 50,
+    backgroundColor: '#FF0404', 
+  },
+  textDangxuat:{
+    alignItems: 'center',
+    fontSize:18,
+    color:"white",
+    fontFamily:'Oswald-Bold',
+  
+  }
 });
 
                
