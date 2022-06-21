@@ -9,6 +9,7 @@ import NewsCategory from './src/screens/NewsCategory';
 import NewsSubcategoryScreen from './src/screens/NewsSubcategoryScreen';
 import DrawerComponent from './src/components/Drawer';
 import Profile from './src/screens/ProfileScreen';
+import EditProfile from './src/screens/EditProfile';
 // import { DrawerContent } from './src/screens/DrawerScreen';
 // import AuthStack from './src/navigation/AboutStack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -28,6 +29,7 @@ const App = ( props) =>{
         <Stack.Screen name='NewsSubcategoryScreen' component={NewsSubcategoryScreen}/>
         <Stack.Screen name='NewDetail' component={NewDetailScreen}/> */}
         <Stack.Screen name='Profile' component={Profile}/>
+        <Stack.Screen name='EditProfile' component={EditProfile}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

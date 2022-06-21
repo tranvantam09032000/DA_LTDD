@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
 
     return (
         <View style={styles.container}>
@@ -32,7 +32,7 @@ const Profile = () => {
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={styles.button}>
+                      <TouchableOpacity onPress={() => navigation.navigate('EditProfile')} style={styles.button}>
                         <View style={styles.gapButton}>
                           <Text style={styles.usermssv}>
                            Thay đổi thông tin

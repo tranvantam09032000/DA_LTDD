@@ -22,44 +22,7 @@ const EditProfile = () => {
           </View>
           
             <View style={styles.body}>
-              <View style={styles.viewButton}>
-                      <TouchableOpacity style={styles.button}>
-                        <View style={styles.gapButton}>
-                          <Text style={styles.usermssv}>
-                            Bài viết đã xem
-                          </Text>
-                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
-                        </View>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity style={styles.button}>
-                        <View style={styles.gapButton}>
-                          <Text style={styles.usermssv}>
-                           Thay đổi thông tin
-                          </Text>
-                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
-                        </View>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity style={styles.button}>
-                        <View style={styles.gapButton}>
-                          <Text style={styles.usermssv}>
-                            Đổi mật khẩu
-                          </Text>
-                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
-                        </View>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity style={styles.dangxuatbtn}>
-                       
-                          <Text style={styles.textDangxuat}>
-                           Đăng Xuất
-                          </Text>  
-                   
-                      </TouchableOpacity>
-                      
-                
-              </View>
+              
             </View>
 
         </View>
