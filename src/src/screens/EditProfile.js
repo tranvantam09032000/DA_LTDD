@@ -22,7 +22,9 @@ const EditProfile = () => {
           </View>
           
             <View style={styles.body}>
-              
+              <Text>
+                EDIT PROFILE
+              </Text>
             </View>
 
         </View>
