@@ -24,11 +24,11 @@ const Profile = () => {
             <View style={styles.body}>
               <View style={styles.viewButton}>
        
-                      <TouchableOpacity>
-                          <Text>
+                      <TouchableOpacity style={styles.button}>
+                          <Text style={styles.usermssv}>
                             Bài viết đã xem
                           </Text>
-                          <Image/>
+                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
                       </TouchableOpacity>
                 
               </View>
@@ -90,13 +90,22 @@ const styles = StyleSheet.create({
   },
   viewButton:{
     flexDirection : 'column',
-
+    paddingTop: 20,
     alignItems: 'center'
   },
   infoContent:{
     flex:1,
     alignItems:'flex-start',
     paddingLeft:5
+  },
+  button: {
+    width: 200,
+    flexDirection: 'row',
+    justifyContent:'flex-start',
+    backgroundColor: '#E0F0F8',
+    alignItems:'center',
+    borderRadius: 5,
+
   },
   
   
