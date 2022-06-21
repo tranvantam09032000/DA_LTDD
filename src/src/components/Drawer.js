@@ -10,33 +10,38 @@ import { collection, getDocs } from "firebase/firestore";
 const DrawerComponent = ({navigation}) => {
 
   
-  const [title, setTitle] = useState([]);
+  const [news, setNews] = useState([]);
   const collectionTitle = collection(db, "title");
+
   useEffect(() =>{
     const getTitle = async() =>{
       const data = await getDocs(collectionTitle);
-      setTitle(data.doc.map((doc) =>({...doc.data(), id: doc.id })));
-      console.log(data);
+      setNews(data.doc.map((doc) =>({...doc.data(), id: doc.id })));
+
     };
-    
-    setTitle();
-  }, [title])
+
+    console.log(getTitle);
+  }, [])
 
 
-  
   const navigationView = () => (
 
     <View style={[styles.container, styles.navigationContainer]}>
-         <View style={{flexDirection:'row', justifyContent:"center", alignItems:'center', padding: 10, backgroundColor:'#2F9FF8'}}>
-            <Image style={{width: 70, height: 70,right: 65 }} source = {require('../sources/images/logo.png')} resizeMode="contain"/>
-            <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white', right: 40}}>Cao Thắng</Text>
-        </View>
+     
+       <View style={{flexDirection:'row', justifyContent:"center", alignItems:'center', padding: 10, backgroundColor:'#2F9FF8'}}>
+        <Image style={{width: 70, height: 70,right: 65 }} source = {require('../sources/images/logo.png')} resizeMode="contain"/>
+        <Text style={{fontSize: 28, fontFamily:'Oswald-Medium', color: 'white', right: 40}}>Cao Thắng</Text>
+    </View>
+         
         <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center', padding: 5}}> 
-
-              <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center', padding: 10}} >
-                        <Image style={{width: 30, height: 30, right: 80}}  source={require('../sources/images/home_icon.png')} resizeMode="contain"/>
-                        <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333', right: 37}}>Trang Chủ</Text> 
-              </TouchableOpacity> 
+            {news.map((news) => {
+          
+                <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center', padding: 10}} >
+                          <Image style={{width: 30, height: 30, right: 80}}  source={require('../sources/images/home_icon.png')} resizeMode="contain"/>
+                          <Text style={{fontFamily:"Oswald-Bold", fontSize: 20, color: '#333333', right: 37}}>{new.title}</Text> 
+                </TouchableOpacity>
+              
+              })}
 
               <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center',  padding: 10}} >
                         <Image style={{width: 30, height: 30, right: 79}}  source={require('../sources/images/khoa_icon.png')} resizeMode="contain"/>
