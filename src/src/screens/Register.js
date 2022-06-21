@@ -20,7 +20,8 @@ import NetInfo from "@react-native-community/netinfo";
 const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
 
-const RegisterScreen = ({navigation}) => {
+const RegisterScreen = ({navigation, route}) => {
+   
 
     const alertTitle = (title, content) =>
         Alert.alert(
@@ -58,7 +59,7 @@ const RegisterScreen = ({navigation}) => {
                                 alertTitle("Thông Báo", "Đăng kí thành công");
                                 const user = userCredential.user;
                                 setIsLoading(false)
-                                navigation.navigate('Login', {email: email});                                                           
+                                navigation.navigate('Login');                                                           
                             })
                            
                             .catch(() => { 
@@ -66,10 +67,8 @@ const RegisterScreen = ({navigation}) => {
                                 setIsLoading(false)
                             })    
                         }
-                }   
-             
-}
-   
+                }       
+}  
     return(   
             <ImageBackground style={styles.container} source={require('../sources/images/background.png')}>
                 <View style = {styles.logo}>

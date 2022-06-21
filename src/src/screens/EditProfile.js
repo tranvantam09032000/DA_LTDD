@@ -11,7 +11,6 @@ import {
 const EditProfile = ({navigation, route}) => {
       const {email} = route.params;
 
-
     return (
         <View style={styles.container}>
           <View style={styles.header}>
