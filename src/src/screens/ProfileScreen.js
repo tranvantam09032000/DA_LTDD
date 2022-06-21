@@ -23,13 +23,15 @@ const Profile = () => {
           
             <View style={styles.body}>
               <View style={styles.viewButton}>
-       
                       <TouchableOpacity style={styles.button}>
+                        <View style={styles.gapButton}>
                           <Text style={styles.usermssv}>
                             Bài viết đã xem
                           </Text>
                           <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
+                        </View>
                       </TouchableOpacity>
+                      
                 
               </View>
             </View>
@@ -91,23 +93,22 @@ const styles = StyleSheet.create({
   viewButton:{
     flexDirection : 'column',
     paddingTop: 20,
-    alignItems: 'center'
   },
-  infoContent:{
-    flex:1,
-    alignItems:'flex-start',
-    paddingLeft:5
-  },
+ 
   button: {
-    width: 200,
-    height: 50,
-    flexDirection: 'row',
-    justifyContent:'space-between',
-    backgroundColor: '#E0F0F8',
-    alignItems:'center',
-    borderRadius: 5,
-    marginLeft: 2,
 
+    width: 350,
+    height: 55,
+    backgroundColor: '#E0F0F8', 
+ 
+
+  },
+  gapButton: {
+    padding: 10,
+    borderRadius: 5,
+    justifyContent:'space-between',
+    alignItems:'center',
+    flexDirection: 'row',
   },
   
   
