@@ -100,11 +100,13 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 200,
+    height: 50,
     flexDirection: 'row',
-    justifyContent:'flex-start',
+    justifyContent:'space-between',
     backgroundColor: '#E0F0F8',
     alignItems:'center',
     borderRadius: 5,
+    marginLeft: 2,
 
   },
   
