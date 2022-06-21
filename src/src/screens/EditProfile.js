@@ -47,7 +47,7 @@ const EditProfile = ({navigation, route}) => {
               <View>
                     <TouchableOpacity style={{backgroundColor: "#2F9FF8", width: 200, height: 45, borderRadius: 10, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
                         <Text style={{fontFamily: 'Oswald-Bold', fontSize: 20, color: '#FFFFFF'}}>
-                              Xác Nhận
+                              Lưu
                         </Text>
                       </TouchableOpacity>
                   </View>

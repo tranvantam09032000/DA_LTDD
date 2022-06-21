@@ -91,17 +91,22 @@ const LoginScreen = ({navigation, route}) => {
                                 <ActivityIndicator style={isLoading ? {opacity: 1, top: 20} : {opacity: 0, top: 20}} 
                                 size="large" 
                                 color="#0000ff" /> 
-                                <TouchableOpacity style={styles.buttonDN} 
-                                    onPress={handleLogin}>  
+                           
+                         <TouchableOpacity 
+                                            style={styles.buttonDN} 
+                                    
+                                            onPress={handleLogin}>  
                                     <Text style={styles.textbtnDN}>Đăng Nhập</Text>
                               </TouchableOpacity>
                         </View>
+                       
+                       
                             
-                    <Text style={{top: 68,alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
+                    <Text visisble="true" style={{top: 68,alignSelf: 'center', color: 'blue', fontFamily:'Oswald-Medium', fontSize: 20,}}
                         onPress={() => navigation.navigate('Register')}
                         >
                         Đăng Ký?
-                    </Text>  
+                    </Text>
                 </SafeAreaView>
             </ImageBackground>
    
