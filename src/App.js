@@ -22,9 +22,9 @@ const App = ( props) =>{
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
           headerShown: false}}>
-        <Stack.Screen name='Login' component={LoginScreen}/>
-        <Stack.Screen name='Register' component={RegisterScreen}/>  
-        {/* <Stack.Screen name='Home' component={DrawerComponent} /> */}
+        {/* <Stack.Screen name='Login' component={LoginScreen}/>
+        <Stack.Screen name='Register' component={RegisterScreen}/>   */}
+        <Stack.Screen name='Home' component={DrawerComponent} />
         {/* <Stack.Screen name='NewDetail' component={NewDetailScreen}/>  */}
         {/* <Stack.Screen name='NewsCategory' component={NewsCategory}/> */}
         {/* <Stack.Screen name='NewsSubcategoryScreen' component={NewsSubcategoryScreen}/> */}
