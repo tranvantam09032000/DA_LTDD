@@ -46,7 +46,10 @@ const LoginScreen = ({navigation, route}) => {
                 .then(userCredentials => {
                     const user = userCredentials.user;
                     setisLoading(false)
-                    navigation.navigate('Profile');
+                    navigation.navigate('Profile',{
+                        email
+                        
+                      });
                 })
                 .catch(() => {
                     setError(true)
@@ -63,7 +66,6 @@ const LoginScreen = ({navigation, route}) => {
                         <Text style = {styles.textDN}>ĐĂNG NHẬP</Text> 
                 </View>
                     <View style = {styles.inputContainer}>
- 
                     <TextInput style={styles.textinputE}
                             placeholder='Email'
                             value={email ?? route.params?.email}
