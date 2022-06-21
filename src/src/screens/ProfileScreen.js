@@ -87,19 +87,19 @@ const styles = StyleSheet.create({
   },  
   name:{
     fontSize:24,
-    color:"#333",
+    color:"#444",
     fontFamily:'Oswald-Bold',
     marginVertical: 2,
   },
   userclass: {
     fontSize:18,
-    color:"#333",
+    color:"#444",
     fontFamily:'Oswald-Bold',
     marginVertical: 2,
   },
   usermssv: {
     fontSize:16,
-    color:"#333",
+    color:"#444",
     fontFamily:'Oswald-Bold',
     marginVertical: 2,
   },
