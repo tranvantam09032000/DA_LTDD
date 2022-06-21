@@ -33,14 +33,14 @@ const ChangePassword = ({navigation, route}) => {
                       <TextInput style={styles.customborder} placeholder='Nguyễn Văn A'/>
                   </View>
 
-                  <View style={{width: 300, height: 40, flexDirection: 'column', top: 30,}}>
+                  <View style={{width: 300, height: 40, flexDirection: 'column', justifyContent: 'center'}}>
                       <Text style={styles.usermssv}>
                         Mật khẩu mới: 
                       </Text>
                       <TextInput style={styles.customborder} placeholder='0306@caothang.edu'/>
                   </View>
 
-                  <View style={{width: 300, height: 40, flexDirection: 'column', top: 30,}}>
+                  <View style={{width: 300, height: 40, flexDirection: 'column', justifyContent: 'center'}}>
                       <Text style={styles.usermssv}>
                         Xác nhận mật khẩu:
                       </Text>
@@ -107,13 +107,12 @@ const styles = StyleSheet.create({
     },
     content: {
       flexDirection: 'column',
-      justifyContent: 'flex-start',
+      justifyContent: 'space-around',
       alignItems: 'center',
-      top: 30,
+      
       height: 350,
     },
     customborder: {
-  
       borderBottomWidth: 2,
       borderBottomColor: '#C4C4C4',
       fontSize: 16,
