@@ -40,6 +40,15 @@ const Profile = () => {
                           <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
                         </View>
                       </TouchableOpacity>
+
+                      <TouchableOpacity style={styles.button}>
+                        <View style={styles.gapButton}>
+                          <Text style={styles.usermssv}>
+                            Đổi mật khẩu
+                          </Text>
+                          <Image source={require('../sources/images/dbright.png')} resizeMode='contain'/>
+                        </View>
+                      </TouchableOpacity>
                       
                 
               </View>
@@ -118,10 +127,6 @@ const styles = StyleSheet.create({
     alignItems:'center',
     flexDirection: 'row',
   },
-  
-  
- 
- 
 });
 
                
