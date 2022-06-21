@@ -41,7 +41,7 @@ const Profile = ({navigation}) => {
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={styles.button}>
+                      <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}  style={styles.button}>
                         <View style={styles.gapButton}>
                           <Text style={styles.usermssv}>
                             Đổi mật khẩu
@@ -50,7 +50,7 @@ const Profile = ({navigation}) => {
                         </View>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={styles.dangxuatbtn}>
+                      <TouchableOpacity onPress={() => navigation.navigate('Login')}  style={styles.dangxuatbtn}>
                        
                           <Text style={styles.textDangxuat}>
                            Đăng Xuất
