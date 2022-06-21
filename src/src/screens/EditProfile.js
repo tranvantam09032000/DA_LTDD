@@ -5,10 +5,13 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from 'react-native';
 
-const EditProfile = () => {
+
+const EditProfile = ({navigation, route}) => {
+      const {email} = route.params;
 
     return (
         <View style={styles.container}>
@@ -17,16 +20,38 @@ const EditProfile = () => {
                 <Image style={styles.avatar} source={require('../sources/images/logo.png')} resizeMode='contain'/>
                 <Text style={styles.name}>Nguyễn Khánh Toàn</Text>
                 <Text style={styles.userclass}>CDTH18PMA</Text>
-                <Text style={styles.usermssv}>0306181081@caothang.edu.vn </Text>
+                <Text style={styles.usermssv}>{email}</Text>
             </View>
           </View>
           
             <View style={styles.body}>
-              <Text>
-                EDIT PROFILE
-              </Text>
-            </View>
+              <View style={styles.content}>
 
+                    <View style={{width: 300, height: 40,flexDirection: 'column', justifyContent: 'center',}}>
+                      <Text style={styles.usermssv}>
+                        Họ và tên: 
+                      </Text>
+                      <TextInput style={styles.customborder} placeholder='Nguyễn Văn A'/>
+                  </View>
+
+                  <View style={{width: 300, height: 40, flexDirection: 'column', top: 30,}}>
+                      <Text style={styles.usermssv}>
+                        Email:
+                      </Text>
+                      <TextInput style={styles.customborder} placeholder='0306@caothang.edu'/>
+                  </View>
+
+                 
+
+              </View>
+              <View>
+                    <TouchableOpacity style={{backgroundColor: "#2F9FF8", width: 200, height: 45, borderRadius: 10, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                        <Text style={{fontFamily: 'Oswald-Bold', fontSize: 20, color: '#FFFFFF'}}>
+                              Lưu
+                        </Text>
+                      </TouchableOpacity>
+                  </View>
+            </View>
         </View>
 
     );
@@ -36,19 +61,15 @@ export default EditProfile
 
 const styles = StyleSheet.create({
  
-  container: {
-   
+  container: { 
   },
-  header:{
-   
+  header:{  
     backgroundColor: '#E0F0F8',
-    
-    
+      
   },
   headerContent:{
     padding:30,
-    alignItems: 'center',
-   
+    alignItems: 'center',   
   },
   avatar: {
     width: 130,
@@ -62,63 +83,38 @@ const styles = StyleSheet.create({
     fontSize:24,
     color:"#444",
     fontFamily:'Oswald-Bold',
-    marginVertical: 2,
+
   },
   userclass: {
     fontSize:18,
     color:"#444",
     fontFamily:'Oswald-Bold',
-    marginVertical: 2,
+
   },
   usermssv: {
-    fontSize:16,
+    fontSize:20,
     color:"#444",
     fontFamily:'Oswald-Bold',
-    marginVertical: 2,
+ 
   },
   body:{
-    
-    backgroundColor: "#F5F5F5",
-    height:500,
-    alignItems:'center',
+    backgroundColor: "#F5F5F5"
   },
-  viewButton:{
-    flexDirection : 'column',
-    justifyContent:'center',
+  content: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop: 20,
+    top: 30,
+    height: 350,
   },
-  button: {
-    width: 350,
-    height: 55,
-    margin: 10,
-    backgroundColor: '#E0F0F8', 
+  customborder: {
 
-  },
-  gapButton: {
-    padding: 10,
-    borderRadius: 5,
-    justifyContent:'space-between',
-    alignItems:'center',
-    flexDirection: 'row',
-  },
-  dangxuatbtn:{
-
-    top: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    width: 250,
-    height: 50,
-    backgroundColor: '#FF0404', 
-  },
-  textDangxuat:{
-    alignItems: 'center',
-    fontSize: 18,
-    color:"white",
-    fontFamily:'Oswald-Bold',
-  
+    borderBottomWidth: 2,
+    borderBottomColor: '#C4C4C4',
+    fontSize: 16,
+    fontFamily:'Oswald-Light'
   }
+
 });
 
                
