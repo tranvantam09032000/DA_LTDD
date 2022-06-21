@@ -5,8 +5,10 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from 'react-native';
+
 
 const EditProfile = ({navigation, route}) => {
       const {email} = route.params;
@@ -24,10 +26,36 @@ const EditProfile = ({navigation, route}) => {
           
             <View style={styles.body}>
               <View style={styles.content}>
-              <Text>
-                
-              </Text>
-            </View>
+
+                    <View style={{width: 300, height: 50, flexDirection: 'column',}}>
+                      <Text style={styles.usermssv}>
+                        Họ và tên: 
+                      </Text>
+                      <TextInput placeholder='Nguyễn Văn A'/>
+                  </View>
+
+                  <View style={{width: 300, height: 50, top: 10,}}>
+                      <Text style={styles.usermssv}>
+                        Lớp: 
+                      </Text>
+                      <TextInput placeholder='CDTH18A'/>
+                  </View>
+
+                  <View style={{width: 300, height: 50}}>
+                      <Text style={styles.usermssv}>
+                        Mssv: 
+                      </Text>
+                      <TextInput placeholder='0306181081'/>
+                  </View>
+                  <View style={{width: 300, height: 50}}>
+                      <Text style={styles.usermssv}>
+                        Email:
+                      </Text>
+                      <TextInput placeholder='0306@caothang.edu'/>
+                  </View>
+
+
+              </View>
             </View>
         </View>
 
@@ -41,11 +69,9 @@ const styles = StyleSheet.create({
   container: {
    
   },
-  header:{
-   
+  header:{  
     backgroundColor: '#E0F0F8',
-    
-    
+      
   },
   headerContent:{
     padding:30,
@@ -79,11 +105,23 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   body:{
-    
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
     backgroundColor: "#F5F5F5",
     height:500,
     alignItems:'center',
   },
+  content: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+    backgroundColor: "#F5F5F5",
+    height:500,
+    alignItems:'center',
+  }
 
 });
 
