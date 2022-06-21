@@ -27,29 +27,30 @@ const EditProfile = ({navigation, route}) => {
             <View style={styles.body}>
               <View style={styles.content}>
 
-                    <View style={{width: 300, height: 50, flexDirection: 'column',}}>
+                    <View style={{width: 300, height: 40,flexDirection: 'column', justifyContent: 'center',}}>
                       <Text style={styles.usermssv}>
                         Họ và tên: 
                       </Text>
                       <TextInput style={styles.customborder} placeholder='Nguyễn Văn A'/>
                   </View>
- 
 
-                  <View style={{width: 300, height: 50, flexDirection: 'column', }}>
-                      <Text style={styles.usermssv}>
-                        Mssv: 
-                      </Text>
-                      <TextInput  style={styles.customborder} placeholder='0306181081'/>
-                  </View>
-                  <View style={{width: 300, height: 50, flexDirection: 'column',}}>
+                  <View style={{width: 300, height: 40, flexDirection: 'column', top: 30,}}>
                       <Text style={styles.usermssv}>
                         Email:
                       </Text>
                       <TextInput style={styles.customborder} placeholder='0306@caothang.edu'/>
                   </View>
 
+                 
 
               </View>
+              <View>
+                    <TouchableOpacity style={{backgroundColor: "#2F9FF8", width: 200, height: 45, borderRadius: 10, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+                        <Text style={{fontFamily: 'Oswald-Bold', fontSize: 20, color: '#FFFFFF'}}>
+                              Xác Nhận
+                        </Text>
+                      </TouchableOpacity>
+                  </View>
             </View>
         </View>
 
@@ -97,18 +98,21 @@ const styles = StyleSheet.create({
  
   },
   body:{
-
+    backgroundColor: "#F5F5F5"
   },
   content: {
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop: 20,
-    height: 300,
+    top: 30,
+    height: 350,
   },
   customborder: {
+
     borderBottomWidth: 2,
-    borderBottomColor: '#C4C4C4'
+    borderBottomColor: '#C4C4C4',
+    fontSize: 16,
+    fontFamily:'Oswald-Light'
   }
 
 });
