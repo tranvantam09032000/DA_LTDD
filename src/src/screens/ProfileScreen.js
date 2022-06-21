@@ -14,13 +14,24 @@ const Profile = () => {
         <View style={styles.container}>
           <View style={styles.header}>
             <View style={styles.headerContent}>
-                <Image style={styles.avatar} source={require('../sources/images/logo.png')}/>
+                <Image style={styles.avatar} source={require('../sources/images/logo.png')} resizeMode='contain'/>
                 <Text style={styles.name}>Nguyễn Khánh Toàn</Text>
                 <Text style={styles.userclass}>CDTH18PMA</Text>
                 <Text style={styles.usermssv}>0306181081@caothang.edu.vn </Text>
-                
             </View>
           </View>
+          
+          <View style={styles.body}>
+            <View style={styles.item}>
+              <View style={styles.iconContent}>
+                  <Image style={styles.icon} source={{uri: 'https://img.icons8.com/color/70/000000/cottage.png'}}/>
+                </View>
+                <View style={styles.infoContent}>
+                  <Text style={styles.info}>Home</Text>
+              </View>
+              </View>
+            </View>
+
         </View>
 
     );
@@ -32,12 +43,11 @@ const styles = StyleSheet.create({
  
   container: {
    
-
   },
   header:{
    
     backgroundColor: '#E0F0F8',
-
+    
     
   },
   headerContent:{
@@ -70,7 +80,21 @@ const styles = StyleSheet.create({
     color:"#333",
     fontFamily:'Oswald-Bold',
     marginVertical: 2,
-  }
+  },
+  body:{
+    backgroundColor: "#F5F5F5",
+    height:500,
+    alignItems:'center',
+  },
+  item:{
+    flexDirection : 'row',
+  },
+  infoContent:{
+    flex:1,
+    alignItems:'flex-start',
+    paddingLeft:5
+  },
+  
   
  
  
