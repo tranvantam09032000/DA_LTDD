@@ -31,27 +31,21 @@ const EditProfile = ({navigation, route}) => {
                       <Text style={styles.usermssv}>
                         Họ và tên: 
                       </Text>
-                      <TextInput placeholder='Nguyễn Văn A'/>
+                      <TextInput style={styles.customborder} placeholder='Nguyễn Văn A'/>
                   </View>
+ 
 
-                  <View style={{width: 300, height: 50, top: 10,}}>
-                      <Text style={styles.usermssv}>
-                        Lớp: 
-                      </Text>
-                      <TextInput placeholder='CDTH18A'/>
-                  </View>
-
-                  <View style={{width: 300, height: 50}}>
+                  <View style={{width: 300, height: 50, flexDirection: 'column', }}>
                       <Text style={styles.usermssv}>
                         Mssv: 
                       </Text>
-                      <TextInput placeholder='0306181081'/>
+                      <TextInput  style={styles.customborder} placeholder='0306181081'/>
                   </View>
-                  <View style={{width: 300, height: 50}}>
+                  <View style={{width: 300, height: 50, flexDirection: 'column',}}>
                       <Text style={styles.usermssv}>
                         Email:
                       </Text>
-                      <TextInput placeholder='0306@caothang.edu'/>
+                      <TextInput style={styles.customborder} placeholder='0306@caothang.edu'/>
                   </View>
 
 
@@ -66,8 +60,7 @@ export default EditProfile
 
 const styles = StyleSheet.create({
  
-  container: {
-   
+  container: { 
   },
   header:{  
     backgroundColor: '#E0F0F8',
@@ -75,8 +68,7 @@ const styles = StyleSheet.create({
   },
   headerContent:{
     padding:30,
-    alignItems: 'center',
-   
+    alignItems: 'center',   
   },
   avatar: {
     width: 130,
@@ -90,37 +82,33 @@ const styles = StyleSheet.create({
     fontSize:24,
     color:"#444",
     fontFamily:'Oswald-Bold',
-    marginVertical: 2,
+
   },
   userclass: {
     fontSize:18,
     color:"#444",
     fontFamily:'Oswald-Bold',
-    marginVertical: 2,
+
   },
   usermssv: {
-    fontSize:16,
+    fontSize:20,
     color:"#444",
     fontFamily:'Oswald-Bold',
-    marginVertical: 2,
+ 
   },
   body:{
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 10,
-    backgroundColor: "#F5F5F5",
-    height:500,
-    alignItems:'center',
+
   },
   content: {
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 10,
-    backgroundColor: "#F5F5F5",
-    height:500,
-    alignItems:'center',
+    paddingTop: 20,
+    height: 300,
+  },
+  customborder: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#C4C4C4'
   }
 
 });
