@@ -23,11 +23,12 @@ const EditProfile = ({navigation, route}) => {
           </View>
           
             <View style={styles.body}>
+              <View style={styles.content}>
               <Text>
-                EDIT PROFILE
+                
               </Text>
             </View>
-
+            </View>
         </View>
 
     );
@@ -83,43 +84,7 @@ const styles = StyleSheet.create({
     height:500,
     alignItems:'center',
   },
-  viewButton:{
-    flexDirection : 'column',
-    justifyContent:'center',
-    alignItems: 'center',
-    paddingTop: 20,
-  },
-  button: {
-    width: 350,
-    height: 55,
-    margin: 10,
-    backgroundColor: '#E0F0F8', 
 
-  },
-  gapButton: {
-    padding: 10,
-    borderRadius: 5,
-    justifyContent:'space-between',
-    alignItems:'center',
-    flexDirection: 'row',
-  },
-  dangxuatbtn:{
-
-    top: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    width: 250,
-    height: 50,
-    backgroundColor: '#FF0404', 
-  },
-  textDangxuat:{
-    alignItems: 'center',
-    fontSize: 18,
-    color:"white",
-    fontFamily:'Oswald-Bold',
-  
-  }
 });
 
                
