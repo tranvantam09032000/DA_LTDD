@@ -5,10 +5,11 @@ import {
     StyleSheet,
     Image,
     Dimensions,
-    ScrollView
+    ScrollView,
+    Pressable
 } from 'react-native';
 import moment from "moment"
-import { collection, getDocs, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from '../firebase/firestore.config';
 
 const HEIGHT = Dimensions.get('window').height;
@@ -16,6 +17,10 @@ const WIDTH = Dimensions.get('window').width;
 
 const NewDetailScreen = (props) => {
     const [infoNew, setinfoNew] = useState({});
+    const [liked, setliked] = useState(false);
+    const [viewNew, setviewNew] = useState(props.route.params.data.post.view);
+    const [likeNew, setlikeNew] = useState(props.route.params.data.post.like);
+
     useEffect(() => {
         updateViewNew(props.route.params.data.post.id, props.route.params.data.post.view);
         setinfoNew(props.route.params.data.post);
@@ -34,8 +39,20 @@ const NewDetailScreen = (props) => {
         return secondContent?.join(" ");
     }
     const updateViewNew = async (id, countView) => {
+        let count = countView;
+        count++;
         const newDoc = doc(db, "news", id);
-        await updateDoc(newDoc, { view: countView + 1 });
+        setviewNew(count);
+        await updateDoc(newDoc, { view: count });
+    }
+    const likedNew = async (id) => {
+        let count = likeNew;
+        let like = !liked;
+        count = like ? count + 1 : count - 1;
+        const newDoc = doc(db, "news", id);
+        setliked(like);
+        setlikeNew(count)
+        await updateDoc(newDoc, { like: count });
     }
     return (
         <ScrollView>
@@ -50,6 +67,22 @@ const NewDetailScreen = (props) => {
                         <Text style={styles.date}>{formatCreated(infoNew.created?.seconds)}</Text>
                     </View>
                 </View>
+                <Text style={{ fontSize: 28, marginTop: 10, fontWeight: '500', paddingHorizontal: 10, textAlign: 'center', }}>{infoNew.title}</Text>
+                <View style={styles.interactive}>
+                    <View style={styles.view}>
+                        <Image style={{ width: 40, height: 40 }} source={require('../sources/images/view.png')} />
+                        <Text style={{textAlign:'center'}}>{viewNew}</Text>
+                    </View>
+                    <View style={styles.like}>
+                        <Pressable  onPress={() => { likedNew(props.route.params.data.post.id) }}>{
+                            liked ? <Image style={{ width: 40, height: 40 }} source={require('../sources/images/heart.png')} /> :
+                                <Image style={{ width: 40, height: 40 }} source={require('../sources/images/unheart.png')} />
+                        }
+                        </Pressable>
+                        <Text style={{textAlign:'center'}}>{likeNew}</Text>
+                    </View>
+                </View>
+
                 <Text style={styles.content}>{firstNewContent(infoNew.content)}</Text>
                 <Image resizeMode="stretch" style={styles.image} source={{ uri: infoNew.image }}></Image>
                 <Text style={styles.content}>{secondNewContent(infoNew.content)}</Text>
@@ -63,7 +96,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F4F9F8',
-        height: HEIGHT
     },
     imageTitle: {
         width: WIDTH,
@@ -82,8 +114,8 @@ const styles = StyleSheet.create({
         position: "absolute"
     },
     titleNew: {
-        marginTop: 20,
-        fontSize: 28,
+        marginTop: 40,
+        fontSize: 24,
         textAlign: 'center',
         fontWeight: '400',
         color: '#e9ecef'
@@ -96,19 +128,32 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     author: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '400',
         color: '#e9ecef'
     },
     date: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '400',
         color: '#e9ecef'
     },
     content: {
         marginVertical: 20,
         marginHorizontal: 10,
-        fontSize: 15
+        fontSize: 15,
+    },
+    interactive:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        paddingHorizontal:10,
+        marginTop:10
+    },
+    like:{
+
+    },
+    view:{
+
     }
 
 })

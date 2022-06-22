@@ -9,6 +9,7 @@ import { collection, getDocs, docs } from "firebase/firestore";
 
 const DrawerComponent = ({navigation}) => {
 
+
   
   const [news, setNews] = useState([]);
   const collectionTitle = collection(db, "categories");
@@ -85,7 +86,7 @@ const DrawerComponent = ({navigation}) => {
       drawerWidth={300}
       renderNavigationView={navigationView}
     >
-        <HomeScreen/>
+        <HomeScreen navigation={navigation}/>
 
     </DrawerLayoutAndroid>
   );

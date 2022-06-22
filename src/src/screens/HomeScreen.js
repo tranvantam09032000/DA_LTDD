@@ -17,18 +17,23 @@ const HomeScreen = ({ navigation, props}) => {
     const [news, setnews] = useState([]);
     const [latestNews, setlatestNews] = useState([]);
     const [viewedNews, setviewedNews] = useState([]);
+    const [likedNews, setlikedNews] = useState([]);
     const connect = collection(db, 'news');
     const getViewedNews = (news) => {
         const viewedNews = [...news];
         viewedNews.sort((a, b) => b.view - a.view);
-        viewedNews.slice(2);
         setviewedNews(viewedNews);
+    };
+
+    const getLikedNews = (news) => {
+        const likedNews = [...news];
+        likedNews.sort((a, b) => b.like - a.like);
+        setlikedNews(likedNews);
     };
 
     const getLatestNews = (news) => {
         const latestNews = [...news];
         latestNews.sort((a, b) => b.created.seconds - a.created.seconds);
-        latestNews.slice(2);
         setlatestNews(latestNews);
     };
 
@@ -37,19 +42,22 @@ const HomeScreen = ({ navigation, props}) => {
         setnews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         getLatestNews(news);
         getViewedNews(news);
+        getLikedNews(news);
     }
     useEffect(() => {
         fetchNews();
-    }, [])
+    }, [news])
 
     return ( 
             <ScrollView>
                 <View style={styles.container}>
-                    <SliderScreen news={news}/>
+                    <SliderScreen news={latestNews.slice(0,3)} type={"NewDetail"} navigation={navigation}/>
                     <Text style={styles.titleNewPost}>Bài viết mới nhất</Text>
-                    <PostsScreen news={latestNews} type={"NewDetail"} countNews={3} navigation={navigation} />
-                    <Text style={styles.titleNewView}>Bài viết xem nhiều nhất</Text>
-                    <PostsScreen news={viewedNews} type={"NewDetail"} countNews={3} navigation={navigation} />
+                    <PostsScreen news={latestNews} type={"NewDetail"}  navigation={navigation} />
+                    <Text style={styles.titleNewView}>Bài viết quan tâm nhiều</Text>
+                    <PostsScreen news={viewedNews} type={"NewDetail"}  navigation={navigation} />
+                    <Text style={styles.titleNewView}>Bài viết yêu thích</Text>
+                    <PostsScreen news={likedNews} type={"NewDetail"} navigation={navigation} />
                 </View>
             </ScrollView>          
     );

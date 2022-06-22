@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, Dimensions, Image, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, Dimensions, Image, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import moment from "moment"
 
@@ -7,16 +7,27 @@ const WIDTH = Dimensions.get('window').width;
 
 export default function PostsScreen(props) {
   const [posts, setposts] = useState([]);
+  const [countNews, setcountNews] = useState(3);
   const type = props.type;
-  const countNews = props.countNews;
   const formatCreated = (date) => {
     return moment(date * 1000).format('HH:mm DD/MM/YYYY');
+  }
+  const seeMore = ()=>{
+    let count = countNews;
+    if(countNews === props.news.length){
+      setposts(props.news.slice(0, 3));
+      setcountNews(3);
+      return;
+    }
+    count ++;
+    setposts(props.news.slice(0, count));
+    setcountNews(count);
   }
   useEffect(() => {
     if (props.news.length === 0) return;
     if (countNews === 0 || !countNews) return setposts(props.news);
-    setposts(posts.slice(0, countNews));
-  }, [])
+    setposts(props.news.slice(0, countNews));
+  }, [props.news])
 
   return (
     <View style={styles.container}>
@@ -32,7 +43,7 @@ export default function PostsScreen(props) {
               <View style={{ flex: 1 }} key={'body' + index}>
                 <View style={styles.contentNew} key={'contentNew' + index}>
                   <Text style={styles.title} key={'title' + index}>{post.title}</Text>
-                  <Text style={styles.content} key={'content' + index}>{post.content}</Text>
+                  <Text style={styles.content} key={'content' + index}>{post.content.slice(0,50) + '...'}</Text>
                 </View>
                 <View style={styles.infoNew} key={'infoNew' + index}>
                   <Text style={styles.author} key={'author' + index}>{post.author}</Text>
@@ -44,6 +55,16 @@ export default function PostsScreen(props) {
           </TouchableOpacity>
         )
       }
+      <Pressable style={styles.buttonSeeMore} onPress={() => {seeMore()}}>
+      {countNews === props.news.length?
+      
+      <Image  style={{width:20, height:20}} source={require('../sources/images/up-arrow.png')} />:
+      <Image  style={{width:20, height:20}} source={require('../sources/images/down-arrow.png')} />}
+       {countNews === props.news.length?
+       <Text style={{fontSize:18}}> Thu nhỏ</Text>:
+       <Text style={{fontSize:18}}> Xem thêm</Text>
+       }
+      </Pressable>
     </View>
   )
 }
@@ -84,5 +105,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 5,
     marginBottom: 5
+  },
+  buttonSeeMore:{
+    flex:1,
+    width:"100%",
+    marginVertical:5,
+    height:30,
+    backgroundColor:'#e1e4ea',
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row'
   }
 })
