@@ -9,46 +9,23 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {TextInputAffix} from 'react-native-paper/lib/typescript/components/TextInput/Adornment/TextInputAffix';
 
 import {db} from '../firebase/firestore.config';
 
 import HomeScreen from '../screens/HomeScreen';
 
 const DrawerComponent = ({navigation}) => {
-  // const dataList = collection(db, "categories");
   const dataSub = collection(db, 'categories');
 
   const [list, setList] = useState([]);
 
-  //   useEffect(() =>{
-  //     const getCategories = async () => {
-  //       const data = await getDocs(dataSub);
-  //       getTieude(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     }
-  //     getCategories();
-  //     console.log(tieude);
-  // }, [])
-
   useEffect(() => {
     const getNews = async () => {
       const data = await getDocs(dataSub);
-      // console.log(data.docs[0].data(),'dd');
       setList(data.docs.map(doc => ({...doc.data(), id: doc.id})));
     };
     getNews();
   }, []);
-  console.log(list);
-
-  // useEffect(()=> {
-  //   const getNews = async () => {
-  //     const data = await getDocs(datasub);
-  //     getTieude(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-
-  //   };
-  //   getNews();
-  //   console.log(tieude);
-  // }, []);
 
   const navigationView = () => (
     <View style={[styles.container, styles.navigationContainer]}>
@@ -80,7 +57,7 @@ const DrawerComponent = ({navigation}) => {
         style={{
           flexDirection: 'column',
           justifyContent: 'flex-start',
-          // alignItems: 'center',
+
           padding: 5,
         }}>
         {list.map((item, idx) => {
@@ -109,13 +86,14 @@ const DrawerComponent = ({navigation}) => {
                   {item.title}
                 </Text>
               </TouchableOpacity>
-              <View
-                style={{
-                  flexDirection: 'column',
-                  justifyContent: 'flex-start',
-                  left: 40,
-                }}>
-                {_.map(item?.subcategories, v => (
+              {_.map(item?.subcategories, (v, idx) => (
+                <View
+                  key={idx}
+                  style={{
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    left: 40,
+                  }}>
                   <TouchableOpacity>
                     <Text
                       style={{
@@ -125,11 +103,11 @@ const DrawerComponent = ({navigation}) => {
 
                         left: 10,
                       }}>
-                      {_.get(v, 'title', 'N/A')}
+                      {_.get(v, 'title')}
                     </Text>
                   </TouchableOpacity>
-                ))}
-              </View>
+                </View>
+              ))}
             </View>
           );
         })}
