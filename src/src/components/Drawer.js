@@ -166,7 +166,7 @@ const DrawerComponent = ({navigation}) => {
     <DrawerLayoutAndroid
       drawerWidth={300}
       renderNavigationView={navigationView}>
-      <HomeScreen />
+      <HomeScreen navigation={navigation} />
     </DrawerLayoutAndroid>
   );
 };
