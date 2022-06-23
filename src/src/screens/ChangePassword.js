@@ -45,6 +45,7 @@ const ChangePassword = ({navigation, route}) => {
                         Xác nhận mật khẩu:
                       </Text>
                       <TextInput style={styles.customborder} secureTextEntry placeholder='**********'/>
+
                   </View>
 
                  
