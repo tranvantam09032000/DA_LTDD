@@ -2,25 +2,22 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  TextInput,
-  Button,
   StyleSheet,
   ScrollView,
-  TouchableOpacity
 } from 'react-native';
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from '../firebase/firestore.config';
 import PostsScreen from "./PostsScreen";
 
-const NewsCategory = ({ navigation }) => {
+const NewsCategory = (props) => {
   const [subCategories, setsubCategories] = useState([]);
   const [news, setnews] = useState([]);
-  const connectSubCategory = doc(db, "categories", "HdKvZodh1YuzPwuXetrx");
+  // const connectSubCategory = doc(db, "categories", "HdKvZodh1YuzPwuXetrx");
   const connectNews = collection(db, 'news');
 
   const fetchCategories = async () => {
-    const data = await getDoc(connectSubCategory);
-    setsubCategories(data.data().subcategories);
+    // const data = await getDoc(connectSubCategory);
+    await setsubCategories(props.route.params.data.category.subcategories);
   }
   const fetchNews = async () => {
     let arrNews = [];
@@ -38,14 +35,13 @@ const NewsCategory = ({ navigation }) => {
     fetchCategories();
     fetchNews();
   }, [])
-
   return (
     <ScrollView>
       <View style={styles.container}>
         {subCategories.map((subCategory, index) =>
           <View key={'subCategory' + index} style={styles.subCategory}>
             <Text key={'title-subCategory' + index} style={styles.titleCategory}>{subCategory.title}</Text>
-            <PostsScreen key={'news' + index} news={getNewBySubCategory(subCategory.code)} type={"NewDetail"} countNews={0} navigation={navigation} subCategory={subCategory} />
+            <PostsScreen key={'news' + index} news={getNewBySubCategory(subCategory.code)} type={"NewDetail"} countNews={0} navigation={props.route.params.data.navigation} subCategory={subCategory} />
           </View>
         )}
       </View>

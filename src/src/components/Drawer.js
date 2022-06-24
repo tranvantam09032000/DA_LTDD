@@ -116,7 +116,9 @@ const DrawerComponent = ({navigation}) => {
                   left: 40,
                 }}>
                 {_.map(item?.subcategories, v => (
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                  onPress={() => navigation.navigate('NewsCategory', { data: {category: item, navigation: navigation} })}
+                  >
                     <Text
                       style={{
                         fontFamily: 'Oswald-Regular',

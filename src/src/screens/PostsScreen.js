@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   content: {
-    marginLeft: 5
+    marginLeft: 5,
+    fontSize:13
   },
   infoNew: {
     flexDirection: 'row',
