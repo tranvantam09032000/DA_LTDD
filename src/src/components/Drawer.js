@@ -1,6 +1,6 @@
-import {collection, getDocs} from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import _ from 'lodash';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   DrawerLayoutAndroid,
   Text,
@@ -9,44 +9,56 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {TextInputAffix} from 'react-native-paper/lib/typescript/components/TextInput/Adornment/TextInputAffix';
-
-import {db} from '../firebase/firestore.config';
+import { db } from '../firebase/firestore.config';
 
 import HomeScreen from '../screens/HomeScreen';
 
-const DrawerComponent = ({navigation}) => {
+const DrawerComponent = ({ navigation }) => {
   const categories = [
-    {title:"Khoa CNTT",subCategories:[
-      {title: "Đồ án tốt nghiệp",code:"datn"},
-      {title: "Thực tập tốt nghiệp",code:"tttn"},
-      {title: "Lịch thi lại",code:"ltl"},
-      {title: "Câu lạc bộ - Các cuộc thi học thuật",code:"clb"},
-    ]},
-    {title:"Đào tạo",subCategories:[
-      {title: "Lịch đào tạo",code:"ldt"},
-      {title: "Thời khóa biểu",code:"tkb"},
-      {title: "Lịch thi",code:"lt"},
-      {title: "Kế hoạch tổ chức học kì phụ, học ghép",code:"kh"},
-    ]},
-    {title:"CTCT - HSSV",subCategories:[
-      {title: "Lịch phòng học",code:"lph"},
-      {title: "Nội dung sinh hoạt chủ nhiệm",code:"ndshcn"},
-      {title: "Đăng ký xác nhận sinh viên",code:"dkxnsv"},
-      {title: "Thông báo khác",code:"tbk"},
-    ]},
-    {title:"Đoàn thanh niên",subCategories:[
-      {title: "Biểu mẫu đoàn hội",code:"bmdh"},
-      {title: "Kế hoạch - Phong trào",code:"khpt"},
-      {title: "Hình ảnh hoạt động",code:"hahd"},
-      {title: "Mùa hè xanh",code:"mhx"},
-    ]},
-    {title:"Học bổng - Vay vốn",subCategories:[
-      {title: "Học bổng - Vay vốn",code:"hbvv"},
-    ]},
-    {title:"Học phí",subCategories:[
-      {title: "Học phí",code:"hp"},
-    ]},
+    {
+      title: "Khoa CNTT",
+      icon: "",
+      subCategories: [
+        { title: "Đồ án tốt nghiệp", code: "datn" },
+        { title: "Thực tập tốt nghiệp", code: "tttn" },
+        { title: "Lịch thi lại", code: "ltl" },
+        { title: "Câu lạc bộ - Các cuộc thi học thuật", code: "clb" },
+      ]
+    },
+    {
+      title: "Đào tạo", subCategories: [
+        { title: "Lịch đào tạo", code: "ldt" },
+        { title: "Thời khóa biểu", code: "tkb" },
+        { title: "Lịch thi", code: "lt" },
+        { title: "Kế hoạch tổ chức học kì phụ, học ghép", code: "kh" },
+      ]
+    },
+    {
+      title: "CTCT - HSSV", subCategories: [
+        { title: "Lịch phòng học", code: "lph" },
+        { title: "Nội dung sinh hoạt chủ nhiệm", code: "ndshcn" },
+        { title: "Đăng ký xác nhận sinh viên", code: "dkxnsv" },
+        { title: "Thông báo khác", code: "tbk" },
+      ]
+    },
+    {
+      title: "Đoàn thanh niên", subCategories: [
+        { title: "Biểu mẫu đoàn hội", code: "bmdh" },
+        { title: "Kế hoạch - Phong trào", code: "khpt" },
+        { title: "Hình ảnh hoạt động", code: "hahd" },
+        { title: "Mùa hè xanh", code: "mhx" },
+      ]
+    },
+    {
+      title: "Học bổng - Vay vốn", subCategories: [
+        { title: "Học bổng - Vay vốn", code: "hbvv" },
+      ]
+    },
+    {
+      title: "Học phí", subCategories: [
+        { title: "Học phí", code: "hp" },
+      ]
+    },
   ]
   // const dataList = collection(db, "categories");
   const dataSub = collection(db, 'categories');
@@ -93,7 +105,7 @@ const DrawerComponent = ({navigation}) => {
           backgroundColor: '#2F9FF8',
         }}>
         <Image
-          style={{width: 70, height: 70, right: 65}}
+          style={{ width: 70, height: 70, right: 65 }}
           source={require('../sources/images/logo.png')}
           resizeMode="contain"
         />
@@ -107,7 +119,6 @@ const DrawerComponent = ({navigation}) => {
           Cao Thắng
         </Text>
       </View>
-
       <View
         style={{
           flexDirection: 'column',
@@ -115,11 +126,9 @@ const DrawerComponent = ({navigation}) => {
           // alignItems: 'center',
           padding: 5,
         }}>
-        {list.map((item, idx) => {
-          return (
-            <View key={idx}>
+          <View>
               <TouchableOpacity
-                onPress={() => navigation.navigate('NewsCategory', { data: {category: item, navigation: navigation} })}
+                onPress={() => navigation.navigate('Home')}
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'flex-start',
@@ -127,7 +136,35 @@ const DrawerComponent = ({navigation}) => {
                   padding: 0.5,
                 }}>
                 <Image
-                  style={{width: 30, height: 30}}
+                  style={{ width: 30, height: 30 }}
+                  source={require('../sources/images/home_icon.png')}
+                  resizeMode="contain"
+                />
+                <Text
+                  style={{
+                    fontFamily: 'Oswald-Medium',
+                    fontWeight: '600',
+                    fontSize: 18,
+                    color: '#444444',
+                    left: 10,
+                  }}>
+                  Trang chủ
+                </Text>
+              </TouchableOpacity>
+            </View>
+        {list.map((item, idx) => {
+          return (
+            <View key={idx}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('NewsCategory', { data: { category: item, navigation: navigation } })}
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  padding: 0.5,
+                }}>
+                <Image
+                  style={{ width: 30, height: 30 }}
                   source={require('../sources/images/home_icon.png')}
                   resizeMode="contain"
                 />
@@ -181,7 +218,7 @@ const DrawerComponent = ({navigation}) => {
             borderRadius: 5,
           }}>
           <Image
-            style={{width: 30, height: 30, right: 40}}
+            style={{ width: 30, height: 30, right: 40 }}
             resizeMode="contain"
           />
           <Text
