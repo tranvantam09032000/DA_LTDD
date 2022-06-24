@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     left: 10,
     width: '90%',
     color: '#e9ecef',
-    fontSize: 20,
+    fontSize: 18,
   },
   content: {
     zIndex: -1,
@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: "#14151673",
     width: "100%",
-    height: "40%",
+    height: "45%",
   }
 })
