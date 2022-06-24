@@ -17,7 +17,7 @@ const NewsCategory = (props) => {
 
   const fetchCategories = async () => {
     // const data = await getDoc(connectSubCategory);
-    await setsubCategories(props.route.params.data.category.subcategories);
+    await setsubCategories(props.route.params.data.category.subCategories);
   }
   const fetchNews = async () => {
     let arrNews = [];
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   subCategory: {
     marginVertical: 5,
-    marginTop: 20
+    marginTop: 20,
   },
   titleCategory: {
     textAlign: 'center',

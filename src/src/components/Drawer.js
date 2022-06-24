@@ -16,10 +16,42 @@ import {db} from '../firebase/firestore.config';
 import HomeScreen from '../screens/HomeScreen';
 
 const DrawerComponent = ({navigation}) => {
+  const categories = [
+    {title:"Khoa CNTT",subCategories:[
+      {title: "Đồ án tốt nghiệp",code:"datn"},
+      {title: "Thực tập tốt nghiệp",code:"tttn"},
+      {title: "Lịch thi lại",code:"ltl"},
+      {title: "Câu lạc bộ - Các cuộc thi học thuật",code:"clb"},
+    ]},
+    {title:"Đào tạo",subCategories:[
+      {title: "Lịch đào tạo",code:"ldt"},
+      {title: "Thời khóa biểu",code:"tkb"},
+      {title: "Lịch thi",code:"lt"},
+      {title: "Kế hoạch tổ chức học kì phụ, học ghép",code:"kh"},
+    ]},
+    {title:"CTCT - HSSV",subCategories:[
+      {title: "Lịch phòng học",code:"lph"},
+      {title: "Nội dung sinh hoạt chủ nhiệm",code:"ndshcn"},
+      {title: "Đăng ký xác nhận sinh viên",code:"dkxnsv"},
+      {title: "Thông báo khác",code:"tbk"},
+    ]},
+    {title:"Đoàn thanh niên",subCategories:[
+      {title: "Biểu mẫu đoàn hội",code:"bmdh"},
+      {title: "Kế hoạch - Phong trào",code:"khpt"},
+      {title: "Hình ảnh hoạt động",code:"hahd"},
+      {title: "Mùa hè xanh",code:"mhx"},
+    ]},
+    {title:"Học bổng - Vay vốn",subCategories:[
+      {title: "Học bổng - Vay vốn",code:"hbvv"},
+    ]},
+    {title:"Học phí",subCategories:[
+      {title: "Học phí",code:"hp"},
+    ]},
+  ]
   // const dataList = collection(db, "categories");
   const dataSub = collection(db, 'categories');
 
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(categories);
 
   //   useEffect(() =>{
   //     const getCategories = async () => {
@@ -31,13 +63,13 @@ const DrawerComponent = ({navigation}) => {
   // }, [])
 
   useEffect(() => {
-    const getNews = async () => {
-      const data = await getDocs(dataSub);
-      // console.log(data.docs[0].data(),'dd');
-      setList(data.docs.map(doc => ({...doc.data(), id: doc.id})));
-    };
-    getNews();
-  }, []);
+    // const getNews = async () => {
+    //   const data = await getDocs(dataSub);
+    //   // console.log(data.docs[0].data(),'dd');
+    //   setList(data.docs.map(doc => ({...doc.data(), id: doc.id})));
+    // };
+    // getNews();
+  }, [categories]);
   console.log(list);
 
   // useEffect(()=> {
@@ -110,7 +142,7 @@ const DrawerComponent = ({navigation}) => {
                   {item.title}
                 </Text>
               </TouchableOpacity>
-              <View
+              {/* <View
                 style={{
                   flexDirection: 'column',
                   justifyContent: 'flex-start',
@@ -132,7 +164,7 @@ const DrawerComponent = ({navigation}) => {
                     </Text>
                   </TouchableOpacity>
                 ))}
-              </View>
+              </View> */}
             </View>
           );
         })}
