@@ -87,6 +87,7 @@ const DrawerComponent = ({navigation}) => {
           return (
             <View key={idx}>
               <TouchableOpacity
+                onPress={() => navigation.navigate('NewsCategory', { data: {category: item, navigation: navigation} })}
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'flex-start',
